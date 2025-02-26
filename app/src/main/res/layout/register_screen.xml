@@ -50,6 +50,7 @@
             android:layout_marginLeft="10dp"/>
 
         <EditText
+            android:id="@+id/register_email"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="  yourname@gmail.com"
@@ -71,6 +72,7 @@
             android:layout_marginLeft="10dp"/>
 
         <EditText
+            android:id="@+id/register_username"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="  yourname"
@@ -92,6 +94,7 @@
             android:layout_marginLeft="10dp"/>
 
         <EditText
+            android:id="@+id/register_password"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="  •••••••••"
@@ -103,7 +106,7 @@
             android:textSize="15sp"
             android:layout_marginBottom="20dp"/>
 
-        <TextView
+        <Button
             android:id="@+id/signup_button"
             android:layout_width="262dp"
             android:layout_height="35dp"

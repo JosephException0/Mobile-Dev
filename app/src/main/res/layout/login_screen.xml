@@ -48,6 +48,7 @@
             android:layout_gravity="start"/>
 
         <EditText
+            android:id="@+id/login_username"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:padding="10dp"
@@ -70,6 +71,7 @@
             android:layout_gravity="start"/>
 
         <EditText
+            android:id="@+id/login_password"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:padding="10dp"
@@ -108,8 +110,9 @@
             android:textColor="#B6B6B6"
             android:background="@android:color/transparent"
             android:textSize="12sp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+
 
     </LinearLayout>
 </LinearLayout>
