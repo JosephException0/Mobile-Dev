@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WORDIFY"
+            android:fontFamily="@font/righteous_regular"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="112dp"
+            android:layout_height="27dp"
+            android:text="Log in"
+            android:fontFamily="@font/righteous_regular"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:paddingHorizontal="15dp"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#6AAA64"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="      Username"
+            android:textColor="#B6B6B6"
+            android:layout_marginTop="57dp"
+            android:layout_gravity="start"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:hint="  @yourname"
+            android:fontFamily="@font/poppins_regular"
+            android:textColorHint="#B6B6B6"
+            android:backgroundTint="#F3F3F3"
+            android:background="@drawable/rounded"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:text="      Password"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="#B6B6B6"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="start"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:hint="   •••••••••"
+            android:textColorHint="#B6B6B6"
+            android:fontFamily="@font/poppins_regular"
+            android:backgroundTint="#F3F3F3"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="256dp"
+            android:layout_height="35dp"
+            android:text="Log In"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:fontFamily="@font/righteous_regular"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#6AAA64"
+            android:textColor="@color/white"
+            android:layout_marginTop="45dp"
+            android:layout_gravity="center"/>
+
+
+
+
+        <Button
+            android:id="@+id/going_to_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Register"
+            android:textAllCaps="false"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="#B6B6B6"
+            android:background="@android:color/transparent"
+            android:textSize="12sp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+</LinearLayout>

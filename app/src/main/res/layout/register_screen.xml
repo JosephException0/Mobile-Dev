@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WORDIFY"
+            android:fontFamily="@font/righteous_regular"
+            android:textSize="50sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="112dp"
+            android:layout_height="37dp"
+            android:text="Sign Up"
+            android:fontFamily="@font/righteous_regular"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/rounded"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="5dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="#C9B458"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="#B6B6B6"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="  yourname@gmail.com"
+            android:fontFamily="@font/poppins_regular"
+            android:textColorHint="#B6B6B6"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#F3F3F3"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="#B6B6B6"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="  yourname"
+            android:textColorHint="#B6B6B6"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#F3F3F3"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:textColor="#B6B6B6"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="15sp"
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="  •••••••••"
+            android:textColorHint="#B6B6B6"
+            android:background="@drawable/rounded"
+            android:fontFamily="@font/poppins_regular"
+            android:backgroundTint="#F3F3F3"
+            android:padding="10dp"
+            android:textSize="15sp"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/signup_button"
+            android:layout_width="262dp"
+            android:layout_height="35dp"
+            android:text="Sign Up"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/righteous_regular"
+            android:gravity="center"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#C9B458"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/back_to_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have an account? Login"
+            android:textAllCaps="false"
+            android:textColor="#B6B6B6"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@android:color/transparent"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+    </LinearLayout>
+</LinearLayout>
