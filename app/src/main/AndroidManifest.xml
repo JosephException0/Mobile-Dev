@@ -13,29 +13,26 @@
         android:theme="@style/Theme.Wordify"
         tools:targetApi="31">
         <activity
+            android:name=".developer_page"
+            android:exported="true" />
+        <activity
             android:name=".ProfilePage"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".SettingPage"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".RegisterPage"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".LoginPage"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true" />
         <activity
             android:name=".LandingPage"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:exported="true"/>
         <activity
             android:name=".TitleScreen"
-            android:exported="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
