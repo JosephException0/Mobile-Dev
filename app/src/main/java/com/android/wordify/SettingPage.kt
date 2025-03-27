@@ -1,27 +1,43 @@
 package com.android.wordify
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 
 class SettingPage : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.setting_page)
 
-        val close_settings: Button = findViewById(R.id.setting_close_button)
-        val dev_page: Button = findViewById(R.id.Developer_button)
+        val closeSettings: Button = findViewById(R.id.setting_close_button)
+        val settingsList: ListView = findViewById(R.id.settings_list)
 
-        close_settings.setOnClickListener {
-            val intent = Intent(this, LandingPage::class.java)
-            startActivity(intent)
+        // List items
+        val settingsOptions = listOf(
+            "Privacy Policy",
+            "Terms & Conditions",
+            "Bug Reports & Feedback",
+            "Developers"
+        )
+
+
+        val adapter = ArrayAdapter(this, R.layout.list_item, R.id.list_item_text, settingsOptions)
+        settingsList.adapter = adapter
+
+        // Click listener for list items, commented indices means that it still doesn't have its page
+        settingsList.setOnItemClickListener { _, _, position, _ ->
+            when (position) {
+//                0 -> startActivity(Intent(this, ::class.java))
+                1 -> startActivity(Intent(this, TermsConditionsPage::class.java))
+//                2 -> startActivity(Intent(this, ::class.java))
+                3 -> startActivity(Intent(this, developer_page::class.java))
+            }
         }
-        dev_page.setOnClickListener {
-            val intent = Intent(this, developer_page::class.java)
-            startActivity(intent)
+
+        closeSettings.setOnClickListener {
+            startActivity(Intent(this, LandingPage::class.java))
         }
     }
 }
