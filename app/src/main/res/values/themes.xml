@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Wordify" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="Theme.Wordify" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Apply custom button style globally -->
+
+    </style>
+
+
 </resources>

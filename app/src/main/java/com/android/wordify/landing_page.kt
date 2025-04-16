@@ -23,6 +23,12 @@ class LandingPage : AppCompatActivity() {
 
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
+        val gameScreenView = findViewById<Button>(R.id.button_daily)
+
+        gameScreenView.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         val drawerButton: Button = findViewById(R.id.drawer_button)
         drawerButton.setOnClickListener {
