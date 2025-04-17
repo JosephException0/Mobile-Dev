@@ -75,11 +75,34 @@ class MainActivity : ComponentActivity() {
                 newRound()
             }
 
-            Toast.makeText(this, "Correct word: ${gameCore.getFinalWord()}", Toast.LENGTH_SHORT).show()
             val row = gameCore.getCurRow()
 
-            if (gameCore.enter()) {
+            // Get the current word input
+            val currentWord = StringBuilder()
+            for (col in 0 until colCount) {
+                currentWord.append(gameCore.getChar(row, col))
+            }
 
+            // Check if the word is complete (all 5 letters filled)
+            if (currentWord.contains(' ')) {
+                Toast.makeText(this, "Please enter a complete word", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Check if the word exists in our dictionary
+
+
+            // For debugging purposes only
+            Toast.makeText(this, "Correct word: ${gameCore.getFinalWord()}", Toast.LENGTH_SHORT).show()
+
+
+            if (!gameCore.searchWord(currentWord.toString())) {
+                Toast.makeText(this, "Not in word list", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Word is valid, proceed with game logic
+            if (gameCore.enter()) {
                 for (col in 0 until colCount) {
                     val result = gameCore.validateChar(row, col)
                     val backgroundId = when (result) {
@@ -99,12 +122,10 @@ class MainActivity : ComponentActivity() {
 
                 if (gameCore.getResult()) {
                     countWins++
-                    IsWon=true
+                    IsWon = true
                 }
 
                 currentRow++
-
-
             }
         }
 
@@ -139,7 +160,6 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun newRound() {
-
         if(IsWon){
             return
         }
@@ -153,7 +173,6 @@ class MainActivity : ComponentActivity() {
         }
 
         Log.e("Word", "=============---- ${gameCore.getFinalWord()}")
-
     }
 
     private fun tintKeyboardLetter(letter: Char, result: Int) {
