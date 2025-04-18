@@ -17,11 +17,11 @@ class SettingPage : AppCompatActivity() {
         val nightMode = sharedPreferences.getBoolean("night", false)
         val highContrastMode = sharedPreferences.getBoolean("highContrast", false)
 
-        if (nightMode) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        // Set the theme before super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(
+            if (nightMode) AppCompatDelegate.MODE_NIGHT_YES
+            else AppCompatDelegate.MODE_NIGHT_NO
+        )
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.setting_page)
@@ -35,29 +35,13 @@ class SettingPage : AppCompatActivity() {
         highContrastSwitch.isChecked = highContrastMode
 
         darkMode.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked != nightMode) {
-                sharedPreferences.edit().apply {
-                    putBoolean("night", isChecked)
-                    apply()
-                }
-
-                AppCompatDelegate.setDefaultNightMode(
-                    if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
-                    else AppCompatDelegate.MODE_NIGHT_NO
-                )
-
-                restartActivity()
-            }
+            sharedPreferences.edit().putBoolean("night", isChecked).apply()
+            restartActivityWithFade()
         }
 
         highContrastSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked != highContrastMode) {
-                sharedPreferences.edit().apply {
-                    putBoolean("highContrast", isChecked)
-                    apply()
-                }
-                restartActivity()
-            }
+            sharedPreferences.edit().putBoolean("highContrast", isChecked).apply()
+            restartActivityWithFade()
         }
 
         val settingsOptions = listOf(
@@ -81,15 +65,16 @@ class SettingPage : AppCompatActivity() {
 
         closeSettings.setOnClickListener {
             startActivity(Intent(this, LandingPage::class.java))
+            finish()
         }
     }
 
-    private fun restartActivity() {
-        val intent = intent
-        finish()
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    private fun restartActivityWithFade() {
+        val intent = Intent(this, SettingPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        finish()
     }
 
     private fun showBugReportDialog() {
