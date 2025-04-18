@@ -24,9 +24,6 @@ class GameCore(
             val row = MutableList(5) { ' ' }
             rows.add(row)
         }
-
-        words = loadWordsFromAssets(context)
-        setWord()
     }
 
     fun getFinalWord(): String {
@@ -114,11 +111,8 @@ class GameCore(
     }
 
     fun setWord() {
-        if (words.isNotEmpty()) {
-            word = words[Random.nextInt(words.size)]
-        } else {
-            word = "EMPTY!!!"
-        }
+        words = loadWordsFromAssets(context)
+        word = words[Random.nextInt(words.size)]
     }
 
     fun loadWordsFromAssets(context: Context): List<String> {
@@ -140,4 +134,14 @@ class GameCore(
 
         return words
     }
+
+
+    fun searchWord(word: String): Boolean {
+        Toast.makeText(context, word, Toast.LENGTH_SHORT).show()
+        return words.contains(word.uppercase())
+    }
+
+
+
+
 }

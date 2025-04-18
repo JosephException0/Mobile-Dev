@@ -11,7 +11,7 @@
             android:id="@+id/Help"
             android:title="Help"
             android:iconTint="@color/black"
-            android:icon="@drawable/menu_help"/>
+            android:icon="@drawable/question_mark"/>
         <item
             android:id="@+id/Logout"
             android:title="Log out"
@@ -21,7 +21,7 @@
             android:id="@+id/Settings"
             android:title="Settings"
             android:iconTint="@color/black"
-            android:icon="@drawable/menu_settings"/>
+            android:icon="@drawable/setting_button"/>
 
     </group>
 </menu>

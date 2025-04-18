@@ -77,10 +77,12 @@ class LandingPage : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
             drawerLayout.closeDrawer(GravityCompat.END)
         } else {
-            super.onBackPressed()
+            // This will minimize the app
+            moveTaskToBack(true)
         }
     }
 
