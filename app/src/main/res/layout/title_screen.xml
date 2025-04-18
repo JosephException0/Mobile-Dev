@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_ts">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="WORDIFY"
             android:fontFamily="@font/righteous_regular"
-            android:textColor="@color/black"
+            android:textColor="@color/text_ts"
             android:textSize="64sp"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +50,7 @@
             android:background="@drawable/play_login"
             android:text="Login / Sign up"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/white"
+            android:textColor="@color/text2"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/imageView"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +64,7 @@
             android:background="@drawable/play_as_guest"
             android:text="Play as Guest"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/white"
+            android:textColor="@color/text2"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/login"
             app:layout_constraintStart_toStartOf="parent"

@@ -53,7 +53,10 @@ class LandingPage : AppCompatActivity() {
                     startActivity(intent)
                 }
 
-                R.id.Help -> showToast("Help Selected")
+                R.id.Help -> {
+                    val intent = Intent(this, HelpPage::class.java)
+                    startActivity(intent)
+                }
                 R.id.Logout -> {
 
                     showLogoutDialog()

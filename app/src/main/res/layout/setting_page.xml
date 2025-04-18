@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@color/background_settings"
+    tools:context=".SettingPage">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,26 +33,28 @@
             android:textSize="36sp"
             android:textStyle="bold"
             android:layout_marginRight="20dp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_settings"
             android:layout_marginBottom="24dp"
             android:gravity="center"/>
 
     </LinearLayout>
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_dark_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dark Mode"
+        android:textColor="@color/text_settings"
         android:paddingStart="16dp"/>
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_high_contrast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="High Contrast Mode"
         android:fontFamily="@font/poppins_regular"
         android:textSize="15sp"
+        android:textColor="@color/text_settings"
         android:layout_marginTop="16dp"
         android:paddingStart="16dp"/>
 
@@ -58,6 +63,7 @@
         android:layout_height="wrap_content"
         android:text="For the color blind"
         android:textSize="13sp"
+        android:textColor="@color/hintText_settings"
         android:fontFamily="@font/poppins_regular"
         android:layout_marginTop="4dp"
         android:paddingStart="16dp"/>

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/background_LogIn"
     android:gravity="center">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:text="WORDIFY"
             android:fontFamily="@font/righteous_regular"
             android:textSize="50sp"
-            android:textColor="@color/black"
+            android:textColor="@color/text_LogIn"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
@@ -31,21 +31,21 @@
             android:text="Sign Up"
             android:fontFamily="@font/righteous_regular"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/text2"
             android:background="@drawable/rounded"
             android:paddingHorizontal="15dp"
             android:paddingVertical="5dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:layout_marginBottom="30dp"
-            android:backgroundTint="#C9B458"/>
+            android:backgroundTint="@color/main2"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email Address"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="#B6B6B6"
+            android:textColor="@color/hintText"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"/>
 
@@ -55,9 +55,9 @@
             android:layout_height="50dp"
             android:hint="  yourname@gmail.com"
             android:fontFamily="@font/poppins_regular"
-            android:textColorHint="#B6B6B6"
+            android:textColorHint="@color/hintText"
             android:background="@drawable/rounded"
-            android:backgroundTint="#F3F3F3"
+            android:backgroundTint="@color/backgroundLog"
             android:padding="10dp"
             android:textSize="15sp"
             android:layout_marginBottom="15dp"/>
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:text="Username"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="#B6B6B6"
+            android:textColor="@color/hintText"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"/>
 
@@ -76,10 +76,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="  yourname"
-            android:textColorHint="#B6B6B6"
+            android:textColorHint="@color/hintText"
             android:fontFamily="@font/poppins_regular"
             android:background="@drawable/rounded"
-            android:backgroundTint="#F3F3F3"
+            android:backgroundTint="@color/backgroundLog"
             android:padding="10dp"
             android:textSize="15sp"
             android:layout_marginBottom="15dp"/>
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"
-            android:textColor="#B6B6B6"
+            android:textColor="@color/hintText"
             android:fontFamily="@font/poppins_regular"
             android:textSize="15sp"
             android:layout_marginLeft="10dp"/>
@@ -98,10 +98,10 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:hint="  •••••••••"
-            android:textColorHint="#B6B6B6"
+            android:textColorHint="@color/hintText"
             android:background="@drawable/rounded"
             android:fontFamily="@font/poppins_regular"
-            android:backgroundTint="#F3F3F3"
+            android:backgroundTint="@color/backgroundLog"
             android:padding="10dp"
             android:textSize="15sp"
             android:layout_marginBottom="20dp"/>
@@ -112,7 +112,7 @@
             android:layout_height="35dp"
             android:text="Sign Up"
             android:textSize="18sp"
-            android:textColor="@color/white"
+            android:textColor="@color/text2"
             android:fontFamily="@font/righteous_regular"
             android:gravity="center"
             android:background="@drawable/rounded"

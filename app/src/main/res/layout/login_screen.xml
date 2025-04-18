@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_LogIn"
     android:gravity="center">
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:gravity="center"
             android:textSize="50sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/text_LogIn"
             android:layout_gravity="center" />
 
         <TextView
@@ -33,7 +34,7 @@
             android:textSize="20sp"
             android:paddingHorizontal="15dp"
             android:background="@drawable/rounded"
-            android:backgroundTint="#6AAA64"
+            android:backgroundTint="@color/main"
             android:layout_marginTop="20dp"
             android:layout_gravity="center" />
 
@@ -43,7 +44,7 @@
             android:textSize="14sp"
             android:fontFamily="@font/poppins_regular"
             android:text="      Username"
-            android:textColor="#B6B6B6"
+            android:textColor="@color/hintText"
             android:layout_marginTop="57dp"
             android:layout_gravity="start"/>
 
@@ -54,8 +55,8 @@
             android:padding="10dp"
             android:hint="  @yourname"
             android:fontFamily="@font/poppins_regular"
-            android:textColorHint="#B6B6B6"
-            android:backgroundTint="#F3F3F3"
+            android:textColorHint="@color/hintText"
+            android:backgroundTint="@color/backgroundLog"
             android:background="@drawable/rounded"
             android:layout_marginTop="10dp"
             android:layout_gravity="center"/>
@@ -66,7 +67,7 @@
             android:textSize="14sp"
             android:text="      Password"
             android:fontFamily="@font/poppins_regular"
-            android:textColor="#B6B6B6"
+            android:textColor="@color/hintText"
             android:layout_marginTop="30dp"
             android:layout_gravity="start"/>
 
@@ -76,9 +77,9 @@
             android:layout_height="45dp"
             android:padding="10dp"
             android:hint="   •••••••••"
-            android:textColorHint="#B6B6B6"
+            android:textColorHint="@color/hintText"
             android:fontFamily="@font/poppins_regular"
-            android:backgroundTint="#F3F3F3"
+            android:backgroundTint="@color/backgroundLog"
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded"
             android:layout_gravity="center"/>
@@ -92,8 +93,8 @@
             android:textAllCaps="false"
             android:fontFamily="@font/righteous_regular"
             android:background="@drawable/rounded"
-            android:backgroundTint="#6AAA64"
-            android:textColor="@color/white"
+            android:backgroundTint="@color/main"
+            android:textColor="@color/text2"
             android:layout_marginTop="45dp"
             android:layout_gravity="center"/>
 

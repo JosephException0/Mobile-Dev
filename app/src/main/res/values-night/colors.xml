@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="text">#FF000000</color>
+    <color name="main">#6AAA64</color>
+    <color name="main2">#C9B458</color>
+    <color name="text2">#FFFFFFFF</color>
+    <color name="hintText">#B6B6B6</color>
+    <color name="backgroundLog">#F3F3F3</color>
+    <color name="background">#FAF9F6</color>
+
+    <!--Settings-->
+    <color name="text_settings">#FFFFFFFF</color>
+    <color name="hintText_settings">#B6B6B6</color>
+    <color name="background_settings">#28282B</color>
+
+    <!-- For Title Screen -->
+    <color name="text_ts">#FFFFFFFF</color>
+    <color name="background_ts">#28282B</color>
+
+    <!-- Log In & Sign In-->
+    <color name="text_LogIn">#FFFFFFFF</color>
+    <color name="background_LogIn">#28282B</color>
+
+    <!-- Profile -->
+    <color name="text_profile">#FFFFFFFF</color>
+    <color name="background_profile">#28282B</color>
+    <color name="backgroundLog_profile">#848884</color>
+
+    <!-- Terms & Condition-->
+    <color name="terms_text">#000000</color>
+    <color name="terms_background">#28282B</color>
+    <color name="terms_title">#FFFFFFFF</color>
+
+
+    <!-- Landing Page, can change the menu icon color, image siya gud, still looking for a menu vector asset-->
+    <color name="text_lp">#FFFFFFFF</color>
+    <color name="background_lp">#28282B</color>
+
+    <!-- Log Out-->
+    <color name="text_logOut">#FFFFFFFF</color>
+    <color name="background_logOut">#28282B</color>
+
+    <!-- Dev Page-->
+    <color name="text_dev">#FFFFFFFF</color>
+    <color name="background_dev">#28282B</color>
+    <color name="backgroundLog_dev">#848884</color>
+
+    <!-- Privacy & Policy -->
+    <color name="text_pp">#FFFFFFFF</color>
+    <color name="background_pp">#28282B</color>
+
+    <!-- MENU -->
+    <color name="menu_background">#000000</color>
+    <color name="menu_text">#FFFFFF</color>
+
+    <!-- Help -->
+    <color name="help_background">#28282B</color>
+    <color name="help_text">#FFFFFF</color>
+    <color name="help_title">#808080</color>
+
+    <!-- Game Screen -->
+    <color name="game_text">#FFFFFF</color>
+    <color name="game_background">#28282B</color>
+    <color name="game_backgroundlog">#353935</color>
+    <color name="border_box">#E2DFD2</color>
+</resources>

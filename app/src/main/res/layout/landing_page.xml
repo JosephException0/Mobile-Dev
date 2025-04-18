@@ -5,6 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_lp"
     tools:context=".LandingPage">
 
     <!-- Main Content -->
@@ -43,7 +44,7 @@
                 android:gravity="center"
                 android:fontFamily="@font/righteous_regular"
                 android:text="WORDIFY"
-                android:textColor="@color/black"
+                android:textColor="@color/text_lp"
                 android:textSize="64sp" />
 
             <TextView
@@ -54,7 +55,7 @@
                 android:layout_marginBottom="32dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text="A New Word Puzzle Every Day!"
-                android:textColor="@color/black"
+                android:textColor="@color/text_lp"
                 android:textSize="15sp" />
 
             <ImageView
