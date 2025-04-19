@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 class RegisterPage : AppCompatActivity() {
 
     companion object {
-        var registeredUsername: String? = null
-        var registeredPassword: String? = null
+        const val EXTRA_USERNAME = "com.android.wordify.USERNAME"
+        const val EXTRA_PASSWORD = "com.android.wordify.PASSWORD"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,12 +32,16 @@ class RegisterPage : AppCompatActivity() {
             val password = passwordField.text.toString().trim()
 
             if (validateInputs(email, username, password)) {
-                registeredUsername = username
-                registeredPassword = password
+                // Store in Application object
+                (application as User1).name = username
+                (application as User1).password = password
                 showToast("Registration Successful!")
 
-                // Redirect to LoginPage
-                val intent = Intent(this, LoginPage::class.java)
+                // Redirect to LoginPage with username and password
+                val intent = Intent(this, LoginPage::class.java).apply {
+                    putExtra(EXTRA_USERNAME, username)
+                    putExtra(EXTRA_PASSWORD, password)
+                }
                 startActivity(intent)
                 finish()
             }

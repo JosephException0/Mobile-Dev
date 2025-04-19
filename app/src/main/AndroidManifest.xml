@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".User1"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -39,6 +40,9 @@
         <activity
             android:name=".LandingPage"
             android:launchMode="singleTask"
+            android:exported="true"/>
+        <activity
+            android:name=".UnlimitedMode"
             android:exported="true"/>
         <activity
             android:name=".TitleScreen"

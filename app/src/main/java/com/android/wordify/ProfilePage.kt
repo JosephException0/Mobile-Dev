@@ -3,6 +3,7 @@ package com.android.wordify
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class ProfilePage : AppCompatActivity() {
@@ -11,6 +12,8 @@ class ProfilePage : AppCompatActivity() {
         setContentView(R.layout.profile_page)
 
         val profile_back_button: Button = findViewById(R.id.profile_button)
+        val nameView = findViewById<TextView>(R.id.textView3)
+        nameView.text = (application as User1).name
 
         profile_back_button.setOnClickListener {
             val intent = Intent(this, LandingPage::class.java)

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/back_to_landing_today"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/baseline_arrow_back"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/time_remaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/righteous_regular"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wordify"
+        android:fontFamily="@font/righteous_regular"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hi Wordier"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/righteous_regular"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tommorrow's a new day, with a new puzzle. See you then."
+        android:textSize="30sp"
+        />
+    <Button
+        android:id="@+id/see_stats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="See Stats"
+        />
+    <TextView
+        android:id="@+id/date_puzzled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="April 19, 2025"/>
+    <TextView
+        android:id="@+id/num_puzzled"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. 1400"
+        />
+
+
+</LinearLayout>
