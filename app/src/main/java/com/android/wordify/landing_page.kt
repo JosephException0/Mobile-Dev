@@ -28,12 +28,8 @@ class LandingPage : AppCompatActivity() {
 
 
         gameScreenView.setOnClickListener {
-            // Check if we should redirect to NoPuzzle first
-            if (!DailyPuzzleUtil.checkAndRedirectIfNeeded(this)) {
-                // Only start MainActivity if no redirect happened
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
-            }
         }
 
         UnligameScreen.setOnClickListener {
