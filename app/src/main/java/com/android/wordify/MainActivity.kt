@@ -193,6 +193,11 @@ class MainActivity : ComponentActivity() {
                 if (gameCore.getResult()) {
                     isWon = true
                     countWins++
+
+                    // Record the win in statistics
+                    val app = application as WordifyApplication
+                    app.recordGamePlayed(true)
+
                     Toast.makeText(this, "Correct! The word was: ${gameCore.getFinalWord()}", Toast.LENGTH_SHORT).show()
 
                     // Start cooldown timer (10 seconds)
@@ -205,6 +210,11 @@ class MainActivity : ComponentActivity() {
 
                 if (currentRow >= rowCount) {
                     isInputBlocked = true
+
+                    // Record the loss in statistics
+                    val app = application as WordifyApplication
+                    app.recordGamePlayed(false)
+
                     Toast.makeText(this, "Game over! The word was: ${gameCore.getFinalWord()}", Toast.LENGTH_SHORT).show()
 
                     // Also start cooldown after losing

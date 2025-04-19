@@ -1,8 +1,8 @@
 package com.android.wordify
 
 import android.app.Application
+import android.content.Context
 
-// Rename to WordifyApplication for clarity
 class WordifyApplication : Application() {
     // Current logged-in user info
     var currentUserId: String = ""
@@ -10,6 +10,13 @@ class WordifyApplication : Application() {
 
     // Store list of registered users
     private val users = mutableMapOf<String, UserData>()
+
+    // Statistics constants
+    private val STATS_PREFS_BASE = "WordifyUserStats"
+    private val KEY_GAMES_PLAYED = "games_played"
+    private val KEY_WINS_TOTAL = "wins_total"
+    private val KEY_CURRENT_STREAK = "current_streak"
+    private val KEY_BEST_STREAK = "best_streak"
 
     fun registerUser(email: String, username: String, password: String): Boolean {
         // Check if username already exists
@@ -64,6 +71,73 @@ class WordifyApplication : Application() {
         } else {
             baseName
         }
+    }
+
+    // Get user statistics preference name
+    private fun getStatsPreferenceName(): String {
+        return getUserPreferenceName(STATS_PREFS_BASE)
+    }
+
+    // Statistics functions
+    fun getGamesPlayed(): Int {
+        val prefs = getApplicationContext().getSharedPreferences(getStatsPreferenceName(), Context.MODE_PRIVATE)
+        return prefs.getInt(KEY_GAMES_PLAYED, 0)
+    }
+
+    fun getWinsTotal(): Int {
+        val prefs = getApplicationContext().getSharedPreferences(getStatsPreferenceName(), Context.MODE_PRIVATE)
+        return prefs.getInt(KEY_WINS_TOTAL, 0)
+    }
+
+    fun getCurrentStreak(): Int {
+        val prefs = getApplicationContext().getSharedPreferences(getStatsPreferenceName(), Context.MODE_PRIVATE)
+        return prefs.getInt(KEY_CURRENT_STREAK, 0)
+    }
+
+    fun getBestStreak(): Int {
+        val prefs = getApplicationContext().getSharedPreferences(getStatsPreferenceName(), Context.MODE_PRIVATE)
+        return prefs.getInt(KEY_BEST_STREAK, 0)
+    }
+
+    fun recordGamePlayed(isWin: Boolean) {
+        val prefs = getApplicationContext().getSharedPreferences(getStatsPreferenceName(), Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        // Increment games played
+        val gamesPlayed = prefs.getInt(KEY_GAMES_PLAYED, 0) + 1
+        editor.putInt(KEY_GAMES_PLAYED, gamesPlayed)
+
+        if (isWin) {
+            // Increment total wins
+            val winsTotal = prefs.getInt(KEY_WINS_TOTAL, 0) + 1
+            editor.putInt(KEY_WINS_TOTAL, winsTotal)
+
+            // Increment current streak
+            val currentStreak = prefs.getInt(KEY_CURRENT_STREAK, 0) + 1
+            editor.putInt(KEY_CURRENT_STREAK, currentStreak)
+
+            // Update best streak if needed
+            val bestStreak = prefs.getInt(KEY_BEST_STREAK, 0)
+            if (currentStreak > bestStreak) {
+                editor.putInt(KEY_BEST_STREAK, currentStreak)
+            }
+        } else {
+            // Reset current streak on loss
+            editor.putInt(KEY_CURRENT_STREAK, 0)
+        }
+
+        editor.apply()
+    }
+
+    // Reset all statistics (for testing)
+    fun resetAllStats() {
+        val prefs = getApplicationContext().getSharedPreferences(getStatsPreferenceName(), Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.putInt(KEY_GAMES_PLAYED, 0)
+        editor.putInt(KEY_WINS_TOTAL, 0)
+        editor.putInt(KEY_CURRENT_STREAK, 0)
+        editor.putInt(KEY_BEST_STREAK, 0)
+        editor.apply()
     }
 }
 
