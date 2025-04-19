@@ -1,10 +1,12 @@
 package com.android.wordify
 
+import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 
 class TermsConditionsPage : AppCompatActivity() {
 
@@ -14,6 +16,15 @@ class TermsConditionsPage : AppCompatActivity() {
 
         val backButton: ImageButton = findViewById(R.id.back_button)
         val termsContent: TextView = findViewById(R.id.terms_content)
+
+        val sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE)
+        val nightMode = sharedPreferences.getBoolean("night", false)
+
+        if (nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
 
         // We Can modify this directly
         val termsText = """ 

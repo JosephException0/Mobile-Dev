@@ -35,12 +35,25 @@ class SettingPage : AppCompatActivity() {
         highContrastSwitch.isChecked = highContrastMode
 
         darkMode.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("night", isChecked).apply()
+            if (isChecked) {
+                highContrastSwitch.isChecked = false
+                sharedPreferences.edit().putBoolean("night", true).putBoolean("highContrast", false).apply()
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                sharedPreferences.edit().putBoolean("night", false).apply()
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
             restartActivityWithFade()
         }
 
         highContrastSwitch.setOnCheckedChangeListener { _, isChecked ->
-            sharedPreferences.edit().putBoolean("highContrast", isChecked).apply()
+            if (isChecked) {
+                darkMode.isChecked = false
+                sharedPreferences.edit().putBoolean("highContrast", true).putBoolean("night", false).apply()
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                sharedPreferences.edit().putBoolean("highContrast", false).apply()
+            }
             restartActivityWithFade()
         }
 

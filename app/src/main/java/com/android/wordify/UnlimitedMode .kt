@@ -14,10 +14,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import org.w3c.dom.Text
 
-class UnlimitedMode : ComponentActivity() {
+class UnlimitedMode :  AppCompatActivity() {
     private lateinit var texts: MutableList<MutableList<TextView>>
     private val rowCount = 6
     private val colCount = 5
@@ -42,7 +44,14 @@ class UnlimitedMode : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.unli_game_screen)
 
+        val sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE)
+        val nightMode = sharedPreferences.getBoolean("night", false)
 
+        if (nightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
 
         val nextWord = findViewById<TextView>(R.id.nextword)
         nextWord.setOnClickListener {
