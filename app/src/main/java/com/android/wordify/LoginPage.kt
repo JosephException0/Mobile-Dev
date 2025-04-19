@@ -41,10 +41,6 @@ class LoginPage : AppCompatActivity() {
             val enteredPassword = passwordField.text.toString().trim()
 
             if (validateLogin(enteredUsername, enteredPassword)) {
-                // Store current login in Application object
-                (application as User1).name = enteredUsername
-                (application as User1).password = enteredPassword
-
                 // Proceed to landing page
                 val intent = Intent(this, LandingPage::class.java)
                 startActivity(intent)
@@ -65,13 +61,16 @@ class LoginPage : AppCompatActivity() {
             return false
         }
 
-        val app = application as User1
-        // If no saved password or username doesn't match
-        if (app.password.isEmpty() || username != app.name || password != app.password) {
+        // Use application's login functionality
+        val app = application as WordifyApplication
+        val loginSuccess = app.loginUser(username, password)
+
+        if (!loginSuccess) {
             showToast("Invalid username or password")
             return false
         }
 
+        showToast("Welcome, ${app.getCurrentUsername()}!")
         return true
     }
 

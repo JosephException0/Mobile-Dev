@@ -8,12 +8,13 @@ import android.widget.Toast
 class GameCore(
     private var rowCount: Int = 6,
     private val context: Context,
-    private val preferenceName: String = "WordifyGameState" // Make this configurable
+    private val basePreferenceName: String = "WordifyGameState" // Now a base name
 ) {
     val IN_WORD = 0
     val IN_PLACE = 1
     val NOT_IN = 2
 
+    // Other variables remain the same
     private var pouse = false
     private var curRow: Int = 0
     private var curCol: Int = 0
@@ -21,13 +22,18 @@ class GameCore(
     private lateinit var word: String
     private var words: List<String> = listOf()
 
-    // SharedPreferences key constants
+    // SharedPreferences key constants remain the same
     private val KEY_CURRENT_WORD = "current_word"
     private val KEY_CURRENT_ROW = "current_row"
     private val KEY_CURRENT_COL = "current_col"
     private val KEY_IS_PAUSED = "is_paused"
     private val KEY_BOARD_STATE = "board_state"
 
+    // Get user-specific preference name
+    private fun getPreferenceName(): String {
+        val app = context.applicationContext as WordifyApplication
+        return app.getUserPreferenceName(basePreferenceName)
+    }
     init {
         for (i in 0 until rowCount) {
             val row = MutableList(5) { ' ' }
@@ -178,7 +184,7 @@ class GameCore(
 
     // Save game state to SharedPreferences
     fun saveGameState() {
-        val prefs = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
         // Save basic game state
@@ -200,9 +206,10 @@ class GameCore(
         editor.apply()
     }
 
+
     // Load game state from SharedPreferences
     fun loadGameState(): Boolean {
-        val prefs = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
 
         // Check if we have a saved game
         if (!prefs.contains(KEY_CURRENT_WORD)) {
@@ -233,11 +240,13 @@ class GameCore(
         return false
     }
 
+
     // Clear saved game state
     fun clearGameState() {
-        val prefs = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.clear()
         editor.apply()
     }
+
 }

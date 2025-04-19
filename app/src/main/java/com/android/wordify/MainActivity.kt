@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
     }
 
     // SharedPreferences constants for Daily Mode
-    private val PREFS_NAME = "WordifyDailyGameState"
+    private val PREFS_BASE_NAME = "WordifyDailyGameState" // Now a base name
     private val KEY_IS_WON = "is_won"
     private val KEY_WINS_COUNT = "wins_count"
     private val KEY_CURRENT_ROW = "current_row"
@@ -45,6 +45,13 @@ class MainActivity : ComponentActivity() {
     private val KEY_INPUT_BLOCKED = "input_blocked"
     private val KEY_COOLDOWN_ACTIVE = "cooldown_active"
     private val KEY_COOLDOWN_END_TIME = "cooldown_end_time"
+
+
+    // Get user-specific preference name
+    private fun getPreferenceName(): String {
+        val app = application as WordifyApplication
+        return app.getUserPreferenceName(PREFS_BASE_NAME)
+    }
 
     @SuppressLint("SetTextI18s")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +73,7 @@ class MainActivity : ComponentActivity() {
         }
 
         // Pass PREFS_NAME to GameCore as the preference name
-        gameCore = GameCore(rowCount, this, PREFS_NAME)
+        gameCore = GameCore(rowCount, this, PREFS_BASE_NAME)
         initTexts()
         setEventListeners()
 
@@ -269,7 +276,7 @@ class MainActivity : ComponentActivity() {
 
     // Save cooldown state
     private fun saveCooldownState(endTimeMillis: Long) {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
         editor.putBoolean(KEY_COOLDOWN_ACTIVE, cooldownActive)
@@ -280,7 +287,7 @@ class MainActivity : ComponentActivity() {
 
     // Check if cooldown should be active when resuming the app
     private fun checkCooldownOnResume() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val isCooldown = prefs.getBoolean(KEY_COOLDOWN_ACTIVE, false)
 
         if (isCooldown) {
@@ -384,7 +391,7 @@ class MainActivity : ComponentActivity() {
 
     // Save additional game state data specific to MainActivity
     private fun saveGameStateData() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
         editor.putBoolean(KEY_IS_WON, isWon)
@@ -398,7 +405,7 @@ class MainActivity : ComponentActivity() {
 
     // Save keyboard state (which keys are colored)
     private fun saveKeyboardState() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
         val keyboardState = StringBuilder()
@@ -442,7 +449,7 @@ class MainActivity : ComponentActivity() {
 
     // Load additional game state data
     private fun loadGameStateData() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
 
         isWon = prefs.getBoolean(KEY_IS_WON, false)
         countWins = prefs.getInt(KEY_WINS_COUNT, 0)
@@ -453,7 +460,7 @@ class MainActivity : ComponentActivity() {
 
     // Load keyboard state
     private fun loadKeyboardState() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val keyboardState = prefs.getString(KEY_KEYBOARD_STATE, null) ?: return
 
         val keyStates = keyboardState.split(",")
@@ -509,7 +516,7 @@ class MainActivity : ComponentActivity() {
     // Clear saved game state
     private fun clearGameState() {
         gameCore.clearGameState()
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.clear()
         editor.apply()

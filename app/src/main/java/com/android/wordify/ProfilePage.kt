@@ -13,7 +13,8 @@ class ProfilePage : AppCompatActivity() {
 
         val profile_back_button: Button = findViewById(R.id.profile_button)
         val nameView = findViewById<TextView>(R.id.textView3)
-        nameView.text = (application as User1).name
+        val app = application as WordifyApplication
+        nameView.text = app.getCurrentUsername()
 
         profile_back_button.setOnClickListener {
             val intent = Intent(this, LandingPage::class.java)

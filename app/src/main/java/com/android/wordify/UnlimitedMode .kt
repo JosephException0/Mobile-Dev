@@ -26,16 +26,23 @@ class UnlimitedMode : ComponentActivity() {
     private var isAnimating = false // Flag to prevent input during animations
 
     // Keys for keyboard state in SharedPreferences
-    private val PREFS_NAME = "WordifyUnlimitedGameState" // Unique name for unlimited mode
+    private val PREFS_BASE_NAME = "WordifyUnlimitedGameState" // Base name
     private val KEY_KEYBOARD_STATE = "keyboard_state"
     private val KEY_CURRENT_ROW = "current_row"
     private val KEY_SHOW_ANSWER = "show_answer"
     private val KEY_SHOW_NEXT_WORD = "show_next_word"
 
+    private fun getPreferenceName(): String {
+        val app = application as WordifyApplication
+        return app.getUserPreferenceName(PREFS_BASE_NAME)
+    }
+
     @SuppressLint("SetTextI18s")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.unli_game_screen)
+
+
 
         val nextWord = findViewById<TextView>(R.id.nextword)
         nextWord.setOnClickListener {
@@ -59,7 +66,7 @@ class UnlimitedMode : ComponentActivity() {
         }
 
         // Pass PREFS_NAME to GameCore as the preference name
-        gameCore = GameCore(rowCount, this, PREFS_NAME)
+        gameCore = GameCore(rowCount, this, PREFS_BASE_NAME)
         initTexts()
         setEventListeners()
 
@@ -271,7 +278,7 @@ class UnlimitedMode : ComponentActivity() {
         gameCore.clearGameState() // Clear saved game state when starting a new game
 
         // Clear UI-specific state also
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.remove(KEY_SHOW_ANSWER)
         editor.remove(KEY_SHOW_NEXT_WORD)
@@ -330,7 +337,7 @@ class UnlimitedMode : ComponentActivity() {
 
     // Save additional game state data specific to UnlimitedMode
     private fun saveGameStateData(showAnswer: Boolean = false, showNextWord: Boolean = false) {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
         editor.putInt(KEY_CURRENT_ROW, currentRow)
@@ -358,7 +365,7 @@ class UnlimitedMode : ComponentActivity() {
 
     // Load additional game state data
     private fun loadGameStateData() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
 
         currentRow = prefs.getInt(KEY_CURRENT_ROW, 0)
 
@@ -413,7 +420,7 @@ class UnlimitedMode : ComponentActivity() {
 
     // Save keyboard state (which keys are colored)
     private fun saveKeyboardState() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
 
         val keyboardState = StringBuilder()
@@ -440,7 +447,7 @@ class UnlimitedMode : ComponentActivity() {
 
     // Load keyboard state (which keys are colored)
     private fun loadKeyboardState() {
-        val prefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val keyboardState = prefs.getString(KEY_KEYBOARD_STATE, null) ?: return
 
         val keyStates = keyboardState.split(",")

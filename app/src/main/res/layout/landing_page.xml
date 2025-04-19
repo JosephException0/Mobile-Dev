@@ -58,24 +58,20 @@
                 android:textColor="@color/text_lp"
                 android:textSize="15sp" />
 
-            <ImageView
-                android:id="@+id/stats_image"
-                android:layout_width="340dp"
-                android:layout_height="wrap_content"
-                android:src="@drawable/stats" />
+
 
             <Button
                 android:id="@+id/button_daily"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="60dp"
                 android:background="@drawable/dailybutton"/>
 
             <Button
                 android:id="@+id/button_unlimited"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/unlimited"/>
         </LinearLayout>
 
