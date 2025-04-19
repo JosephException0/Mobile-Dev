@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_profile">
 
-
-    <Button
-        android:id="@+id/profile_button"
-        android:layout_width="40dp"
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/arrow_back"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/profile_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/imageView3"
@@ -22,7 +34,9 @@
         android:src="@drawable/profile_pic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_button" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+
 
     <TextView
         android:id="@+id/textView3"
@@ -30,57 +44,160 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/righteous_regular"
-        android:text="John"
+
         android:textColor="@color/text_profile"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <RelativeLayout
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="390dp"
         android:layout_height="425dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/rounded"
         android:backgroundTint="@color/backgroundLog"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView3">
 
-        <TextView
-            android:id="@+id/stats"
+        <LinearLayout
+            android:id="@+id/Best_streak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stats"
-            android:fontFamily="@font/righteous_regular"
-            android:textColor="@color/black"
-            android:textSize="24sp">
+            android:background="@drawable/rounded"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Current_streak"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.726">
 
-        </TextView>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:src="@drawable/star" />
 
-        <ImageView
-            android:id="@+id/game_stats"
+
+            <TextView
+                android:id="@+id/best_streak_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="248" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Best Streak" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Current_streak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/stats"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/stats">
+            android:background="@drawable/rounded"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.722">
 
-        </ImageView>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:src="@drawable/fire" />
 
-        <ImageView
+
+            <TextView
+                android:id="@+id/current_streak_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="248" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Streak" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/game_played"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/game_stats"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/stats_profile">
+            android:background="@drawable/rounded"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/Current_streak"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        </ImageView>
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:src="@drawable/controller" />
+
+
+            <TextView
+                android:id="@+id/game_played_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="248" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Games Played" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Wins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/rounded"
+            android:backgroundTint="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/Best_streak"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:src="@drawable/trophy" />
+
+
+            <TextView
+                android:id="@+id/wins_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="248" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wins" />
+
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

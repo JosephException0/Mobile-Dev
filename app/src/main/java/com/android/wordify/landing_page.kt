@@ -24,11 +24,19 @@ class LandingPage : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         val gameScreenView = findViewById<Button>(R.id.button_daily)
+        val UnligameScreen = findViewById<Button>(R.id.button_unlimited)
+
 
         gameScreenView.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+        }
+
+        UnligameScreen.setOnClickListener {
+            val intent = Intent(this, UnlimitedMode::class.java)
             startActivity(intent)
         }
+
 
         val drawerButton: Button = findViewById(R.id.drawer_button)
         drawerButton.setOnClickListener {

@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/back_to_landing"
+                android:id="@+id/back_to_landing1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -33,17 +33,17 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/righteous_regular"
-                android:text="Wordify"
+                android:text="Unlimited"
                 android:textAlignment="center"
                 android:textColor="@color/game_text"
 
                 android:textSize="32dp" />
 
             <ImageView
-                android:id="@+id/help_gamescreen"
+                android:id="@+id/help_gamescreen1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="180dp"
+                android:layout_marginLeft="170dp"
                 android:clickable="true"
                 android:src="@drawable/question_mark" />
 
@@ -61,21 +61,40 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <TextView
-            android:id="@+id/daily_answer"
+            android:id="@+id/unli_answer1"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:background="@drawable/round_answer"
             android:backgroundTint="@color/text_settings"
-            android:text=""
-            android:visibility="invisible"
+
             android:gravity="center"
             android:textSize="20dp"
             android:layout_marginTop="10dp"
+            android:visibility="invisible"
             android:fontFamily="@font/righteous_regular"
             android:textAlignment="center"
             android:textColor="@color/background_settings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <TextView
+            android:id="@+id/nextword"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:background="@drawable/rounded"
+            android:backgroundTint="@color/green"
+            android:clickable="true"
+            android:contextClickable="true"
+            android:text="NEW WORD"
+            android:textSize="10sp"
+            android:visibility="invisible"
+            android:fontFamily="@font/righteous_regular"
+            android:textColor="@color/white"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/unli_answer1"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 

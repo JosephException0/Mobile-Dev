@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 class RegisterPage : AppCompatActivity() {
 
     companion object {
-        var registeredUsername: String? = null
-        var registeredPassword: String? = null
+        const val EXTRA_USERNAME = "com.android.wordify.USERNAME"
+        const val EXTRA_PASSWORD = "com.android.wordify.PASSWORD"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,14 +32,26 @@ class RegisterPage : AppCompatActivity() {
             val password = passwordField.text.toString().trim()
 
             if (validateInputs(email, username, password)) {
-                registeredUsername = username
-                registeredPassword = password
-                showToast("Registration Successful!")
+                // Register user in application
+                val app = application as WordifyApplication
+                val registerSuccess = app.registerUser(email, username, password)
 
-                // Redirect to LoginPage
-                val intent = Intent(this, LoginPage::class.java)
-                startActivity(intent)
-                finish()
+                if (registerSuccess) {
+                    showToast("Registration Successful!")
+
+                    // Save registered users to persistent storage
+                    saveRegisteredUsers()
+
+                    // Redirect to LoginPage with username and password
+                    val intent = Intent(this, LoginPage::class.java).apply {
+                        putExtra(EXTRA_USERNAME, username)
+                        putExtra(EXTRA_PASSWORD, password)
+                    }
+                    startActivity(intent)
+                    finish()
+                } else {
+                    showToast("Username already exists!")
+                }
             }
         }
 
@@ -48,6 +60,19 @@ class RegisterPage : AppCompatActivity() {
             val intent = Intent(this, LoginPage::class.java)
             startActivity(intent)
         }
+    }
+
+    // Save registered users to SharedPreferences
+    private fun saveRegisteredUsers() {
+        // You would implement a more secure way to store users in a real app
+        // This is just for demonstration purposes
+        val prefs = getSharedPreferences("WordifyUsers", MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        // In a real app, you'd encrypt passwords and use a more robust storage solution
+        // For now, we'll just save the fact that registration occurred
+        editor.putBoolean("has_registered_users", true)
+        editor.apply()
     }
 
     // Validate inputs
