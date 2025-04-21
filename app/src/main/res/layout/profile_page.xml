@@ -52,151 +52,176 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="425dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/rounded"
         android:backgroundTint="@color/backgroundLog"
-        android:padding="15dp"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView3">
 
         <LinearLayout
-            android:id="@+id/Best_streak"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:orientation="vertical"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Current_streak"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.726">
+            app:layout_constraintStart_toStartOf="parent">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:src="@drawable/star" />
+            <LinearLayout
+                android:id="@+id/Best_streak"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Current_streak"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.726">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/star" />
 
 
-            <TextView
-                android:id="@+id/best_streak_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="248" />
+                <TextView
+                    android:id="@+id/best_streak_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="248" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Best Streak" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Best Streak" />
 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Current_streak"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.722">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/fire" />
+
+
+                <TextView
+                    android:id="@+id/current_streak_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="248" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Streak" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/Current_streak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.722">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:src="@drawable/fire" />
-
-
-            <TextView
-                android:id="@+id/current_streak_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="248" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Current Streak" />
-
-
-        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/game_played"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/Current_streak"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:src="@drawable/controller" />
+            <LinearLayout
+                android:id="@+id/game_played"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Current_streak"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/controller" />
 
 
-            <TextView
-                android:id="@+id/game_played_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="248" />
+                <TextView
+                    android:id="@+id/game_played_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="248" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Games Played" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Games Played" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Wins"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/Best_streak"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/trophy" />
+
+
+                <TextView
+                    android:id="@+id/wins_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="248" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wins" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/Wins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/rounded"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/Best_streak"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:src="@drawable/trophy" />
-
-
-            <TextView
-                android:id="@+id/wins_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="248" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Wins" />
-
-
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

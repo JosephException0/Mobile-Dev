@@ -10,6 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 class LoginPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Check if user is already logged in
+
         setContentView(R.layout.login_screen)
 
         val usernameField: EditText = findViewById(R.id.login_username)
@@ -20,6 +23,7 @@ class LoginPage : AppCompatActivity() {
         // Auto-fill fields if coming from registration
         val username = intent.getStringExtra(RegisterPage.EXTRA_USERNAME)
         val password = intent.getStringExtra(RegisterPage.EXTRA_PASSWORD)
+
 
         if (!username.isNullOrEmpty()) {
             usernameField.setText(username)

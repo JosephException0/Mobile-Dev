@@ -20,10 +20,20 @@ class TitleScreen : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.title_screen)
 
         val guestButton: Button = findViewById(R.id.guest_button)
+
+        val app = application as WordifyApplication
+        if (app.restoreLoginState() && app.isUserLoggedIn()) {
+            val intent = Intent(this, LandingPage::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
+
 
         guestButton.setOnClickListener {
             val intent = Intent(this, LandingPage::class.java)

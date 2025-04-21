@@ -16,11 +16,13 @@ import com.google.android.material.navigation.NavigationView
 class LandingPage : AppCompatActivity() {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
+    private lateinit var app: WordifyApplication
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.landing_page)
 
+        app = application as WordifyApplication
         drawerLayout = findViewById(R.id.drawer_layout)
         navigationView = findViewById(R.id.navigation_view)
         val gameScreenView = findViewById<Button>(R.id.button_daily)
@@ -28,8 +30,8 @@ class LandingPage : AppCompatActivity() {
 
 
         gameScreenView.setOnClickListener {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
         UnligameScreen.setOnClickListener {
@@ -66,8 +68,12 @@ class LandingPage : AppCompatActivity() {
                     startActivity(intent)
                 }
                 R.id.Logout -> {
-
-                    showLogoutDialog()
+                    // Only show logout dialog for non-guest users
+                    if (!app.isGuestUser()) {
+                        showLogoutDialog()
+                    } else {
+                        showToast("Already using guest account")
+                    }
                 }
 
                 R.id.Settings -> {
@@ -106,9 +112,15 @@ class LandingPage : AppCompatActivity() {
 
         btnConfirm.setOnClickListener {
             dialog.dismiss()
-            val intent = Intent(this, LoginPage::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            // Log out the current user (switches to guest account)
+            app.logoutUser()
+
+            // Restart this activity to refresh the UI with guest info
+            val intent = Intent(this, LandingPage::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+            finish()
         }
 
         dialog.show()

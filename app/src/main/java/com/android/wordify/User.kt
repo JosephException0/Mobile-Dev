@@ -8,6 +8,10 @@ class WordifyApplication : Application() {
     var currentUserId: String = ""
     var currentUsername1: String = "Guest"
 
+    // Guest account constants
+    private val GUEST_ID = "guest_user"
+    private val GUEST_USERNAME = "Guest"
+
     // Store list of registered users
     private val users = mutableMapOf<String, UserData>()
 
@@ -18,9 +22,62 @@ class WordifyApplication : Application() {
     private val KEY_CURRENT_STREAK = "current_streak"
     private val KEY_BEST_STREAK = "best_streak"
 
+    // User storage constants
+    private val USERS_PREFS = "WordifyUsers"
+    private val USER_PREFIX = "user_"
+    private val EMAIL_INDEX = 0
+    private val PASSWORD_INDEX = 1
+
+    override fun onCreate() {
+        super.onCreate()
+        // Create guest account
+        createGuestAccount()
+        // Load saved users from SharedPreferences
+        loadSavedUsers()
+        // Try to restore previous login state
+        if (!restoreLoginState()) {
+            // If no saved login, default to guest account
+            switchToGuestAccount()
+        }
+    }
+
+    private fun createGuestAccount() {
+        // Create a guest account that is always available but not saved to SharedPreferences
+        val guestData = UserData(GUEST_ID, GUEST_USERNAME, "", "guest@wordify.app")
+        users[GUEST_ID] = guestData
+    }
+
+    fun switchToGuestAccount() {
+        // Switch to guest account without clearing saved login state
+        currentUserId = GUEST_ID
+        currentUsername1 = GUEST_USERNAME
+    }
+
+    private fun loadSavedUsers() {
+        val prefs = getSharedPreferences(USERS_PREFS, Context.MODE_PRIVATE)
+        // Get all saved preferences
+        val allEntries = prefs.all
+
+        // Look for user entries
+        for ((key, value) in allEntries) {
+            if (key.startsWith(USER_PREFIX)) {
+                val username = key.substring(USER_PREFIX.length) // Remove "user_" prefix
+                val parts = (value as String).split(",")
+
+                if (parts.size == 2) {
+                    val email = parts[EMAIL_INDEX]
+                    val password = parts[PASSWORD_INDEX]
+
+                    // Add to users map
+                    users[email] = UserData(email, username, password, email)
+                }
+            }
+        }
+    }
+
     fun registerUser(email: String, username: String, password: String): Boolean {
         // Check if username already exists
-        if (users.values.any { it.username == username }) {
+        if (users.values.any { it.username == username && it.userId != GUEST_ID }) {
             return false
         }
 
@@ -33,7 +90,19 @@ class WordifyApplication : Application() {
         // Add to users map
         users[userId] = userData
 
+        // Save user to persistent storage
+        saveUser(username, email, password)
+
         return true
+    }
+
+    private fun saveUser(username: String, email: String, password: String) {
+        val prefs = getSharedPreferences(USERS_PREFS, Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        // Save user details (email,password)
+        editor.putString("$USER_PREFIX$username", "$email,$password")
+        editor.apply()
     }
 
     fun loginUser(username: String, password: String): Boolean {
@@ -45,6 +114,39 @@ class WordifyApplication : Application() {
             // Set current user
             currentUserId = user.userId
             currentUsername1 = user.username
+
+            // Save current user login state
+            saveLoginState(user.userId, user.username)
+            return true
+        }
+
+        return false
+    }
+
+    private fun saveLoginState(userId: String, username: String) {
+        // Don't save guest account as logged in
+        if (userId == GUEST_ID) {
+            return
+        }
+
+        val prefs = getSharedPreferences(USERS_PREFS, Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+
+        // Save logged in user info
+        editor.putString("current_user_id", userId)
+        editor.putString("current_username", username)
+        editor.apply()
+    }
+
+    // Check for saved login state and restore it
+    fun restoreLoginState(): Boolean {
+        val prefs = getSharedPreferences(USERS_PREFS, Context.MODE_PRIVATE)
+        val savedUserId = prefs.getString("current_user_id", "")
+        val savedUsername = prefs.getString("current_username", "")
+
+        if (!savedUserId.isNullOrEmpty() && !savedUsername.isNullOrEmpty()) {
+            currentUserId = savedUserId
+            currentUsername1 = savedUsername
             return true
         }
 
@@ -56,12 +158,23 @@ class WordifyApplication : Application() {
     }
 
     fun isUserLoggedIn(): Boolean {
-        return currentUserId.isNotEmpty()
+        return currentUserId.isNotEmpty() && currentUserId != GUEST_ID
+    }
+
+    fun isGuestUser(): Boolean {
+        return currentUserId == GUEST_ID
     }
 
     fun logoutUser() {
-        currentUserId = ""
-        currentUsername1 = "Guest"
+        // Instead of clearing completely, switch to guest account
+        switchToGuestAccount()
+
+        // Clear login state in SharedPreferences
+        val prefs = getSharedPreferences(USERS_PREFS, Context.MODE_PRIVATE)
+        val editor = prefs.edit()
+        editor.remove("current_user_id")
+        editor.remove("current_username")
+        editor.apply()
     }
 
     // Get user-specific preference name

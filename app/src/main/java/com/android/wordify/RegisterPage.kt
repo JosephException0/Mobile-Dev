@@ -39,9 +39,6 @@ class RegisterPage : AppCompatActivity() {
                 if (registerSuccess) {
                     showToast("Registration Successful!")
 
-                    // Save registered users to persistent storage
-                    saveRegisteredUsers()
-
                     // Redirect to LoginPage with username and password
                     val intent = Intent(this, LoginPage::class.java).apply {
                         putExtra(EXTRA_USERNAME, username)
@@ -60,19 +57,6 @@ class RegisterPage : AppCompatActivity() {
             val intent = Intent(this, LoginPage::class.java)
             startActivity(intent)
         }
-    }
-
-    // Save registered users to SharedPreferences
-    private fun saveRegisteredUsers() {
-        // You would implement a more secure way to store users in a real app
-        // This is just for demonstration purposes
-        val prefs = getSharedPreferences("WordifyUsers", MODE_PRIVATE)
-        val editor = prefs.edit()
-
-        // In a real app, you'd encrypt passwords and use a more robust storage solution
-        // For now, we'll just save the fact that registration occurred
-        editor.putBoolean("has_registered_users", true)
-        editor.apply()
     }
 
     // Validate inputs
