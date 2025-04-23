@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_hp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="?android:attr/colorBackground"
     android:padding="24dp"
-    android:backgroundTint="@color/help_background"
+    android:background="@color/help_background"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HelpPage">
 
     <LinearLayout
@@ -14,15 +14,16 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/back_button_help"
+        <Button
+            android:id="@+id/help_back"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/arrow_back"
-            android:contentDescription="Back" />
+            android:layout_marginTop="5dp"
+            android:background="@drawable/transparent"
+            android:drawableStart="@drawable/arrow_back" />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="🆘 Wordify Help"
@@ -33,6 +34,7 @@
             android:textColor="@color/help_title" />
 
         <TextView
+            android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Introduction"
@@ -42,6 +44,7 @@
             android:textColor="@color/help_title" />
 
         <TextView
+            android:id="@+id/text_intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wordify helps you improve your vocabulary, track progress, and explore word games for fun and learning."
@@ -50,6 +53,7 @@
             android:textColor="@color/help_text" />
 
         <TextView
+            android:id="@+id/intro2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="📘 Dictionary / Word Explorer"
@@ -59,6 +63,7 @@
             android:textColor="@color/help_title" />
 
         <TextView
+            android:id="@+id/text_dictionary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Search for a word to see its meaning, pronunciation, synonyms, and usage."
@@ -67,6 +72,7 @@
             android:textColor="@color/help_text" />
 
         <TextView
+            android:id="@+id/intro3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="🧠 Word Games / Quizzes"
@@ -76,6 +82,7 @@
             android:textColor="@color/help_title" />
 
         <TextView
+            android:id="@+id/text_games"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Choose a game to test your vocabulary.\n\nEarn points or achievements as you progress.\n\nDifficulty adjusts automatically based on your score."
@@ -84,6 +91,7 @@
             android:textColor="@color/help_text" />
 
         <TextView
+            android:id="@+id/intro4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="📊 Progress Tracking"
@@ -93,6 +101,7 @@
             android:textColor="@color/help_title" />
 
         <TextView
+            android:id="@+id/text_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="View your progress on the profile page.\n\nStats include most-learned words, quiz scores, etc."

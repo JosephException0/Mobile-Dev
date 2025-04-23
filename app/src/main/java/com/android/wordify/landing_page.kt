@@ -1,14 +1,16 @@
 package com.android.wordify
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
@@ -37,7 +39,6 @@ class LandingPage : AppCompatActivity() {
             logoutItem.setTitle(R.string.menu_logout)
         }
 
-
         gameScreenView.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -47,7 +48,6 @@ class LandingPage : AppCompatActivity() {
             val intent = Intent(this, UnlimitedMode::class.java)
             startActivity(intent)
         }
-
 
         val drawerButton: Button = findViewById(R.id.drawer_button)
         drawerButton.setOnClickListener {
@@ -88,16 +88,54 @@ class LandingPage : AppCompatActivity() {
 
                 R.id.Settings -> {
                     val intent = Intent(this, SettingPage::class.java)
-                    startActivity(intent)
+                    startActivityForResult(intent, 1001)
                 }
             }
             drawerLayout.closeDrawer(GravityCompat.END)
             true
         }
+
+        applyThemeBasedOnHighContrast()
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    override fun onResume() {
+        super.onResume()
+        applyThemeBasedOnHighContrast()
+    }
+
+    private fun applyThemeBasedOnHighContrast() {
+        val sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE)
+        val isHighContrast = sharedPreferences.getBoolean("highContrast", false)
+
+        if (isHighContrast) {
+            applyHighContrastTheme()
+        } else {
+            resetToDefaultTheme()
+        }
+    }
+
+    private fun applyHighContrastTheme() {
+        val title = findViewById<TextView>(R.id.title_text)
+        val subtitle = findViewById<TextView>(R.id.subtitle_text)
+        val bg = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val bg1 = findViewById<LinearLayout>(R.id.groupContainer)
+
+        title?.setTextColor(ContextCompat.getColor(this, R.color.hc_name))
+        subtitle?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+        bg?.setBackgroundColor(ContextCompat.getColor(this, R.color.hc_background_dev))
+        bg1?.setBackgroundColor(ContextCompat.getColor(this, R.color.hc_background_dev))
+    }
+
+    private fun resetToDefaultTheme() {
+        val title = findViewById<TextView>(R.id.title_text)
+        val subtitle = findViewById<TextView>(R.id.subtitle_text)
+        val bg = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val bg1 = findViewById<LinearLayout>(R.id.groupContainer)
+
+        title?.setTextColor(ContextCompat.getColor(this, R.color.text_lp))
+        subtitle?.setTextColor(ContextCompat.getColor(this, R.color.text_lp))
+        bg?.setBackgroundColor(ContextCompat.getColor(this, R.color.background_lp))
+        bg1?.setBackgroundColor(ContextCompat.getColor(this, R.color.background_lp))
     }
 
     override fun onBackPressed() {
@@ -121,9 +159,7 @@ class LandingPage : AppCompatActivity() {
 
         btnConfirm.setOnClickListener {
             dialog.dismiss()
-
             app.logoutUser()
-
             val intent = Intent(this, LandingPage::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)

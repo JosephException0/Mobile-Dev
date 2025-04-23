@@ -3,6 +3,7 @@ package com.android.wordify
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,11 +13,14 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
@@ -67,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
 
-        val backLanding = findViewById<ImageView>(R.id.back_to_landing)
+        val backLanding = findViewById<Button>(R.id.back_to_landing)
         backLanding.setOnClickListener {
             saveFullGameState()
             startActivity(Intent(this, LandingPage::class.java))
@@ -87,6 +91,7 @@ class MainActivity : AppCompatActivity() {
         if (!loadFullGameState()) {
             newRound()
         }
+        applyHighContrastIfEnabled()
     }
 
     override fun onPause() {
@@ -517,6 +522,96 @@ class MainActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({
                 answered.visibility = View.INVISIBLE
             }, 2000)
+        }
+    }
+
+    private fun applyHighContrastIfEnabled() {
+        val sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE)
+        val isHighContrast = sharedPreferences.getBoolean("highContrast", false)
+
+        if (isHighContrast) {
+            val bgmain = findViewById<ConstraintLayout>(R.id.bg_main)
+            val bg = findViewById<RelativeLayout>(R.id.root_game)
+            val bg1 = findViewById<LinearLayout>(R.id.linearLayout)
+            val cr1 = findViewById<TextView>(R.id.text1col1row)
+            val cr2 = findViewById<TextView>(R.id.text2col1row)
+            val cr3 = findViewById<TextView>(R.id.text3col1row)
+            val cr4 = findViewById<TextView>(R.id.text4col1row)
+            val cr5 = findViewById<TextView>(R.id.text5col1row)
+            val cr6 = findViewById<TextView>(R.id.text1col2row)
+            val cr7 = findViewById<TextView>(R.id.text2col2row)
+            val cr8 = findViewById<TextView>(R.id.text3col2row)
+            val cr9 = findViewById<TextView>(R.id.text4col2row)
+            val cr10 = findViewById<TextView>(R.id.text5col2row)
+            val cr11 = findViewById<TextView>(R.id.text1col3row)
+            val cr12 = findViewById<TextView>(R.id.text2col3row)
+            val cr13 = findViewById<TextView>(R.id.text3col3row)
+            val cr14 = findViewById<TextView>(R.id.text4col3row)
+            val cr15 = findViewById<TextView>(R.id.text5col3row)
+            val cr16 = findViewById<TextView>(R.id.text1col4row)
+            val cr17 = findViewById<TextView>(R.id.text2col4row)
+            val cr18 = findViewById<TextView>(R.id.text3col4row)
+            val cr19 = findViewById<TextView>(R.id.text4col4row)
+            val cr20 = findViewById<TextView>(R.id.text5col4row)
+            val cr21 = findViewById<TextView>(R.id.text1col5row)
+            val cr22 = findViewById<TextView>(R.id.text2col5row)
+            val cr23 = findViewById<TextView>(R.id.text3col5row)
+            val cr24 = findViewById<TextView>(R.id.text4col5row)
+            val cr25 = findViewById<TextView>(R.id.text5col5row)
+            val cr26 = findViewById<TextView>(R.id.text1col6row)
+            val cr27 = findViewById<TextView>(R.id.text2col6row)
+            val cr28 = findViewById<TextView>(R.id.text3col6row)
+            val cr29 = findViewById<TextView>(R.id.text4col6row)
+            val cr30 = findViewById<TextView>(R.id.text5col6row)
+            val daily = findViewById<TextView>(R.id.daily_answer)
+            val btn = findViewById<Button>(R.id.back_to_landing)
+            val title = findViewById<TextView>(R.id.title)
+            val help = findViewById<ImageView>(R.id.help_gamescreen)
+
+            title?.setTextColor(ContextCompat.getColor(this, R.color.background_lp))
+            bgmain?.setBackgroundColor(ContextCompat.getColor(this, R.color.hc_background_dev))
+            bg1?.setBackgroundColor(ContextCompat.getColor(this, R.color.hc_background_dev))
+            daily?.setTextColor(ContextCompat.getColor(this, R.color.hc_name))
+            cr1?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr2?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr3?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr4?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr5?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr6?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr7?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr8?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr9?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr10?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr11?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr12?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr13?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr14?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr15?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr16?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr17?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr18?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr19?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr20?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr21?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr22?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr23?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr24?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr25?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr26?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr27?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr28?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr29?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+            cr30?.setTextColor(ContextCompat.getColor(this, R.color.hc_text_dev))
+
+
+            btn?.compoundDrawablesRelative?.getOrNull(0)?.mutate()?.let { drawable ->
+                drawable.setTint(ContextCompat.getColor(this, R.color.hc_text_settings))
+                btn.invalidate()
+            }
+
+            help?.imageTintList = ColorStateList.valueOf(
+                ContextCompat.getColor(this, R.color.hc_text_settings)
+            )
         }
     }
 }

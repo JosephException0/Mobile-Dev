@@ -1,10 +1,14 @@
 package com.android.wordify
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 
 class ProfilePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +41,6 @@ class ProfilePage : AppCompatActivity() {
             val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
         }
-
-
     }
+
 }

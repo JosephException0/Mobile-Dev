@@ -2,13 +2,13 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/background_settings"
     tools:context=".SettingPage">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,6 +25,7 @@
             android:drawableStart="@drawable/arrow_back"/>
 
         <TextView
+            android:id="@+id/settings_title"
             android:layout_marginTop="13dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,6 +46,8 @@
         android:layout_height="wrap_content"
         android:text="Dark Mode"
         android:textColor="@color/text_settings"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="15sp"
         android:paddingStart="16dp"/>
 
     <androidx.appcompat.widget.SwitchCompat
@@ -59,6 +62,7 @@
         android:paddingStart="16dp"/>
 
     <TextView
+        android:id="@+id/hint_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="For the color blind"
@@ -69,13 +73,12 @@
         android:paddingStart="16dp"/>
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/game_text"
         android:layout_marginBottom="16dp"/>
-
 
     <ListView
         android:id="@+id/settings_list"

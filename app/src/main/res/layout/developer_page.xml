@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/root_dev"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/background_dev">
@@ -46,7 +47,6 @@
 
             <!-- Developer 1 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardDev1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -54,6 +54,7 @@
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
+                    android:id="@+id/cardDev1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/backgroundLog_dev"
@@ -79,7 +80,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/textViewCompany1"
+                        android:id="@+id/textViewProgram1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -116,7 +117,6 @@
 
             <!-- Developer 2 -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardDev2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -124,6 +124,7 @@
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
+                    android:id="@+id/cardDev2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -149,7 +150,7 @@
                         android:gravity="center" />
 
                     <TextView
-                        android:id="@+id/textViewCompany2"
+                        android:id="@+id/textViewProgram2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="BSCS - 2"

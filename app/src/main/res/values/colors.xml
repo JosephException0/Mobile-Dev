@@ -72,4 +72,20 @@
     <color name="game_background">#FFFFFF</color>
     <color name="game_backgroundlog">#d3d7da</color>
 
+    <color name="unique">#FFFFFF</color>
+
+
+    <!-- High Contrast Colors -->
+    <color name="hc_background_settings">#000000</color>
+    <color name="hc_text_settings">#FFFFFF</color>
+    <color name="hc_hintText_settings">#FFFF00</color>
+    <color name="hc_divider">#FF0000</color>
+
+    <!-- Dev-->
+    <color name="hc_background_dev">#000000</color>
+    <color name="hc_text_title">#FFFFFF</color>
+    <color name="hc_text_dev">#FFFF00</color>
+    <color name="hc_card_dev">#1E1E1E</color>
+    <color name="hc_name">#FF0000</color>
+
 </resources>

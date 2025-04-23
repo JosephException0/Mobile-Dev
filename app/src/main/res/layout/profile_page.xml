@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_profile">
@@ -53,6 +54,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_group"
         android:layout_width="407dp"
         android:layout_height="490dp"
         android:layout_marginTop="24dp"
@@ -102,6 +104,7 @@
                     android:text="248" />
 
                 <TextView
+                    android:id="@+id/textview_bstreak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -139,6 +142,7 @@
                     android:text="248" />
 
                 <TextView
+                    android:id="@+id/textview_streak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
@@ -183,11 +187,11 @@
                     android:id="@+id/game_played_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:textColor="@color/black"
                     android:text="248" />
 
                 <TextView
+                    android:id="@+id/textview_games"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -224,6 +228,7 @@
                     android:text="248" />
 
                 <TextView
+                    android:id="@+id/textview_wins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
