@@ -73,6 +73,7 @@
         android:layout_height="1dp"
         android:background="@color/black"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/game_text"
         android:layout_marginBottom="16dp"/>
 
 
