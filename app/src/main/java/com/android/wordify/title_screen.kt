@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatDelegate
 
 class TitleScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Apply theme before setting content view
         val sharedPreferences = getSharedPreferences("Mode", Context.MODE_PRIVATE)
         val nightMode = sharedPreferences.getBoolean("night", false)
 
-        // Set theme once at the beginning
         if (nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {

@@ -11,7 +11,6 @@ class LoginPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Check if user is already logged in
 
         setContentView(R.layout.login_screen)
 
@@ -20,7 +19,6 @@ class LoginPage : AppCompatActivity() {
         val loginButton: Button = findViewById(R.id.login_button)
         val registerButton: Button = findViewById(R.id.going_to_register)
 
-        // Auto-fill fields if coming from registration
         val username = intent.getStringExtra(RegisterPage.EXTRA_USERNAME)
         val password = intent.getStringExtra(RegisterPage.EXTRA_PASSWORD)
 
@@ -33,19 +31,16 @@ class LoginPage : AppCompatActivity() {
             passwordField.setText(password)
         }
 
-        // Navigate to Register Page
         registerButton.setOnClickListener {
             val intent = Intent(this, RegisterPage::class.java)
             startActivity(intent)
         }
 
-        // Handle Login Button Click
         loginButton.setOnClickListener {
             val enteredUsername = usernameField.text.toString().trim()
             val enteredPassword = passwordField.text.toString().trim()
 
             if (validateLogin(enteredUsername, enteredPassword)) {
-                // Proceed to landing page
                 val intent = Intent(this, LandingPage::class.java)
                 startActivity(intent)
                 finish()
@@ -53,7 +48,6 @@ class LoginPage : AppCompatActivity() {
         }
     }
 
-    // Validate Login Inputs
     private fun validateLogin(username: String, password: String): Boolean {
         if (username.isEmpty()) {
             showToast("Username is required")
@@ -65,7 +59,6 @@ class LoginPage : AppCompatActivity() {
             return false
         }
 
-        // Use application's login functionality
         val app = application as WordifyApplication
         val loginSuccess = app.loginUser(username, password)
 
@@ -78,7 +71,6 @@ class LoginPage : AppCompatActivity() {
         return true
     }
 
-    // Function to show toast messages
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

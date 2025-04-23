@@ -28,6 +28,15 @@ class LandingPage : AppCompatActivity() {
         val gameScreenView = findViewById<Button>(R.id.button_daily)
         val UnligameScreen = findViewById<Button>(R.id.button_unlimited)
 
+        val menu = navigationView.menu
+        val logoutItem = menu.findItem(R.id.Logout)
+
+        if (app.isGuestUser()) {
+            logoutItem.setTitle(R.string.menu_login)
+        } else {
+            logoutItem.setTitle(R.string.menu_logout)
+        }
+
 
         gameScreenView.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -67,12 +76,13 @@ class LandingPage : AppCompatActivity() {
                     val intent = Intent(this, HelpPage::class.java)
                     startActivity(intent)
                 }
+
                 R.id.Logout -> {
-                    // Only show logout dialog for non-guest users
                     if (!app.isGuestUser()) {
                         showLogoutDialog()
                     } else {
-                        showToast("Already using guest account")
+                        val intent = Intent(this, LoginPage::class.java)
+                        startActivity(intent)
                     }
                 }
 
@@ -95,7 +105,6 @@ class LandingPage : AppCompatActivity() {
         if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
             drawerLayout.closeDrawer(GravityCompat.END)
         } else {
-            // This will minimize the app
             moveTaskToBack(true)
         }
     }
@@ -113,10 +122,8 @@ class LandingPage : AppCompatActivity() {
         btnConfirm.setOnClickListener {
             dialog.dismiss()
 
-            // Log out the current user (switches to guest account)
             app.logoutUser()
 
-            // Restart this activity to refresh the UI with guest info
             val intent = Intent(this, LandingPage::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)

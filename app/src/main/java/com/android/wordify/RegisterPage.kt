@@ -25,21 +25,18 @@ class RegisterPage : AppCompatActivity() {
         val signUpButton: Button = findViewById(R.id.signup_button)
         val backToLoginButton: Button = findViewById(R.id.back_to_login)
 
-        // Handle registration
         signUpButton.setOnClickListener {
             val email = emailField.text.toString().trim()
             val username = usernameField.text.toString().trim()
             val password = passwordField.text.toString().trim()
 
             if (validateInputs(email, username, password)) {
-                // Register user in application
                 val app = application as WordifyApplication
                 val registerSuccess = app.registerUser(email, username, password)
 
                 if (registerSuccess) {
                     showToast("Registration Successful!")
 
-                    // Redirect to LoginPage with username and password
                     val intent = Intent(this, LoginPage::class.java).apply {
                         putExtra(EXTRA_USERNAME, username)
                         putExtra(EXTRA_PASSWORD, password)
@@ -52,14 +49,12 @@ class RegisterPage : AppCompatActivity() {
             }
         }
 
-        // Back to login page
         backToLoginButton.setOnClickListener {
             val intent = Intent(this, LoginPage::class.java)
             startActivity(intent)
         }
     }
 
-    // Validate inputs
     private fun validateInputs(email: String, username: String, password: String): Boolean {
         if (email.isEmpty()) {
             showToast("Email is required")
@@ -89,7 +84,6 @@ class RegisterPage : AppCompatActivity() {
         return true
     }
 
-    // Function to show toast messages
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }

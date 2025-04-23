@@ -30,16 +30,15 @@ class MainActivity : AppCompatActivity() {
     private var isInputBlocked = false
     private var isAnimating = false
     private var cooldownActive = false
-    private val cooldownDuration = 10000L  // 10 seconds in milliseconds
+    private val cooldownDuration = 24 * 60 * 60 * 1000L
 
-    // Handler for cooldown timer
+
     private val cooldownHandler = Handler(Looper.getMainLooper())
     private val cooldownRunnable = Runnable {
         resetGame()
     }
 
-    // SharedPreferences constants for Daily Mode
-    private val PREFS_BASE_NAME = "WordifyDailyGameState" // Now a base name
+    private val PREFS_BASE_NAME = "WordifyDailyGameState"
     private val KEY_IS_WON = "is_won"
     private val KEY_WINS_COUNT = "wins_count"
     private val KEY_CURRENT_ROW = "current_row"
@@ -49,7 +48,6 @@ class MainActivity : AppCompatActivity() {
     private val KEY_COOLDOWN_END_TIME = "cooldown_end_time"
 
 
-    // Get user-specific preference name
     private fun getPreferenceName(): String {
         val app = application as WordifyApplication
         return app.getUserPreferenceName(PREFS_BASE_NAME)
@@ -71,24 +69,21 @@ class MainActivity : AppCompatActivity() {
 
         val backLanding = findViewById<ImageView>(R.id.back_to_landing)
         backLanding.setOnClickListener {
-            // Save state before leaving
             saveFullGameState()
             startActivity(Intent(this, LandingPage::class.java))
         }
 
         val help = findViewById<ImageView>(R.id.help_gamescreen)
         help.setOnClickListener {
-            // Save state before showing help
             saveFullGameState()
             startActivity(Intent(this, HelpPage::class.java))
         }
 
-        // Pass PREFS_NAME to GameCore as the preference name
+        // Pass PREFS_NAME to GameCore
         gameCore = GameCore(rowCount, this, PREFS_BASE_NAME)
         initTexts()
         setEventListeners()
 
-        // Try to load saved game first, start new game if none exists
         if (!loadFullGameState()) {
             newRound()
         }
@@ -96,19 +91,16 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        // Save game state when activity is paused
         saveFullGameState()
     }
 
     override fun onStop() {
         super.onStop()
-        // Also save game state when activity is stopped
         saveFullGameState()
     }
 
     override fun onResume() {
         super.onResume()
-        // Check if cooldown should be active when resuming
         checkCooldownOnResume()
     }
 
@@ -129,7 +121,6 @@ class MainActivity : AppCompatActivity() {
 
                 if (gameCore.setNextChar(c)) {
                     texts[row][col].text = c.toString()
-                    // Save state after each character input
                     saveFullGameState()
                 }
             }
@@ -151,7 +142,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             if (currentWord.contains(' ')) {
-                Toast.makeText(this, "Please enter a complete word", Toast.LENGTH_SHORT).show()
+                showTemporaryMessage("Not in word list")
                 shakeCurrentRow()
                 return@setOnClickListener
             }
@@ -193,7 +184,6 @@ class MainActivity : AppCompatActivity() {
 
                                 if (col == colCount - 1) {
                                     isAnimating = false
-                                    // Save state after animation completes
                                     saveFullGameState()
                                 }
                             }
@@ -205,13 +195,11 @@ class MainActivity : AppCompatActivity() {
                     isWon = true
                     countWins++
 
-                    // Record the win in statistics
                     val app = application as WordifyApplication
                     app.recordGamePlayed(true)
+                    Toast.makeText(this, "Comeback Tomorrow", Toast.LENGTH_SHORT).show()
+                    showTemporaryMessage("${gameCore.getFinalWord()}", true)
 
-                    Toast.makeText(this, "Correct! The word was: ${gameCore.getFinalWord()}", Toast.LENGTH_SHORT).show()
-
-                    // Start cooldown timer (10 seconds)
                     startCooldown()
 
                     return@setOnClickListener
@@ -222,13 +210,11 @@ class MainActivity : AppCompatActivity() {
                 if (currentRow >= rowCount) {
                     isInputBlocked = true
 
-                    // Record the loss in statistics
                     val app = application as WordifyApplication
                     app.recordGamePlayed(false)
+                    Toast.makeText(this, "Comeback Tomorrow", Toast.LENGTH_SHORT).show()
+                    showTemporaryMessage("${gameCore.getFinalWord()}", true)
 
-                    Toast.makeText(this, "Game over! The word was: ${gameCore.getFinalWord()}", Toast.LENGTH_SHORT).show()
-
-                    // Also start cooldown after losing
                     startCooldown()
                 }
             }
@@ -248,7 +234,6 @@ class MainActivity : AppCompatActivity() {
             val col = gameCore.getCurCol()
             texts[row][col].text = " "
 
-            // Save state after erase
             saveFullGameState()
         }
     }
@@ -256,40 +241,33 @@ class MainActivity : AppCompatActivity() {
     // Start cooldown timer
     private fun startCooldown() {
         cooldownActive = true
-        isInputBlocked = true  // Ensure input is blocked during cooldown
-        showTemporaryMessage("New game in 10 seconds...", true)
+        isInputBlocked = true
+        Toast.makeText(this, "Comeback Tomorrow", Toast.LENGTH_SHORT).show()
+        showTemporaryMessage("${gameCore.getFinalWord()}", true)
 
-        // Remove any pending cooldown tasks
         cooldownHandler.removeCallbacks(cooldownRunnable)
 
-        // Schedule game reset after cooldown
         cooldownHandler.postDelayed(cooldownRunnable, cooldownDuration)
 
-        // Save the cooldown state
         saveCooldownState(System.currentTimeMillis() + cooldownDuration)
 
-        // Save the full game state
         saveFullGameState()
     }
 
     // Reset game after cooldown
     private fun resetGame() {
-        // Clear all saved game state first
+
         clearGameState()
 
-        // Reset all game variables
         isWon = false
-        isInputBlocked = false  // Explicitly unblock input
+        isInputBlocked = false
         cooldownActive = false
         currentRow = 0
 
-        // Reset the game core
         gameCore.startOver()
 
-        // Start a new round
         newRound()
 
-        // Clear the message
         findViewById<TextView>(R.id.daily_answer).visibility = View.INVISIBLE
 
         Toast.makeText(this, "New game started!", Toast.LENGTH_SHORT).show()
@@ -306,7 +284,6 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    // Check if cooldown should be active when resuming the app
     private fun checkCooldownOnResume() {
         val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val isCooldown = prefs.getBoolean(KEY_COOLDOWN_ACTIVE, false)
@@ -316,27 +293,23 @@ class MainActivity : AppCompatActivity() {
             val currentTime = System.currentTimeMillis()
 
             if (currentTime < endTime) {
-                // Cooldown still active, restart timer for remaining time
                 val remainingTime = endTime - currentTime
                 cooldownActive = true
-                isInputBlocked = true  // Ensure input stays blocked
-                showTemporaryMessage("New game in ${remainingTime / 1000} seconds...", true)
+                isInputBlocked = true
+                showTemporaryMessage("${gameCore.getFinalWord()}", true)
 
                 cooldownHandler.removeCallbacks(cooldownRunnable)
                 cooldownHandler.postDelayed(cooldownRunnable, remainingTime)
             } else {
-                // Cooldown expired while app was in background
                 resetGame()
             }
         }
     }
 
-    // Add shake animation to current row
     private fun shakeCurrentRow() {
         val row = gameCore.getCurRow()
         val shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
 
-        // Apply the shake animation to each TextView in the current row
         for (col in 0 until colCount) {
             texts[row][col].startAnimation(shakeAnimation)
         }
@@ -363,11 +336,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        // Reset keyboard colors
         resetKeyboardColors()
         Log.e("Word", "=============---- ${gameCore.getFinalWord()}")
 
-        // Save new game state
         saveFullGameState()
     }
 
@@ -399,7 +370,6 @@ class MainActivity : AppCompatActivity() {
 
         button.backgroundTintList = ContextCompat.getColorStateList(this, colorRes)
 
-        // Save keyboard state after changes
         saveKeyboardState()
     }
 
@@ -456,12 +426,9 @@ class MainActivity : AppCompatActivity() {
         val gameCoreLoaded = gameCore.loadGameState()
 
         if (gameCoreLoaded) {
-            // Load additional game state data
             loadGameStateData()
-            // Update UI with loaded game state
             updateUIFromGameCore()
             loadKeyboardState()
-            // Check if cooldown should be active
             checkCooldownOnResume()
             return true
         }
@@ -518,7 +485,6 @@ class MainActivity : AppCompatActivity() {
                     val textView = texts[row][col]
                     textView.text = char.toString()
 
-                    // If this row is completed (not the current row), apply colors
                     if (row < gameCore.getCurRow()) {
                         val result = gameCore.validateChar(row, col)
                         val backgroundId = when (result) {
@@ -534,7 +500,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Clear saved game state
     private fun clearGameState() {
         gameCore.clearGameState()
         val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
@@ -551,7 +516,7 @@ class MainActivity : AppCompatActivity() {
         if (!keepVisible) {
             Handler(Looper.getMainLooper()).postDelayed({
                 answered.visibility = View.INVISIBLE
-            }, 2000) // Hide after 2 seconds
+            }, 2000)
         }
     }
 }

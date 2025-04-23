@@ -25,10 +25,9 @@ class UnlimitedMode :  AppCompatActivity() {
     private val colCount = 5
     private lateinit var gameCore: GameCore
     private var currentRow = 0
-    private var isAnimating = false // Flag to prevent input during animations
+    private var isAnimating = false
 
-    // Keys for keyboard state in SharedPreferences
-    private val PREFS_BASE_NAME = "WordifyUnlimitedGameState" // Base name
+    private val PREFS_BASE_NAME = "WordifyUnlimitedGameState"
     private val KEY_KEYBOARD_STATE = "keyboard_state"
     private val KEY_CURRENT_ROW = "current_row"
     private val KEY_SHOW_ANSWER = "show_answer"
@@ -60,7 +59,6 @@ class UnlimitedMode :  AppCompatActivity() {
 
         val backlanding = findViewById<ImageView>(R.id.back_to_landing1)
         backlanding.setOnClickListener {
-            // Save game state before leaving
             saveFullGameState()
             val intent = Intent(this, LandingPage::class.java)
             startActivity(intent)
@@ -68,33 +66,28 @@ class UnlimitedMode :  AppCompatActivity() {
 
         val help = findViewById<ImageView>(R.id.help_gamescreen1)
         help.setOnClickListener {
-            // Save game state before showing help
             saveFullGameState()
             val intent = Intent(this, HelpPage::class.java)
             startActivity(intent)
         }
 
-        // Pass PREFS_NAME to GameCore as the preference name
+        // Pass PREFS_NAME to GameCore
         gameCore = GameCore(rowCount, this, PREFS_BASE_NAME)
         initTexts()
         setEventListeners()
 
-        // Try to load saved game first
         if (!loadFullGameState()) {
-            // If no saved game, start a new round
             newRound()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        // Save game state when activity is paused
         saveFullGameState()
     }
 
     override fun onStop() {
         super.onStop()
-        // Also save game state when activity is stopped
         saveFullGameState()
     }
 
@@ -108,7 +101,6 @@ class UnlimitedMode :  AppCompatActivity() {
                 val col = gameCore.getCurCol()
                 if (gameCore.setNextChar(c.toChar())) {
                     texts[row][col].text = c.toChar().toString()
-                    // Save state after each character input
                     saveFullGameState()
                 }
             }
@@ -125,21 +117,19 @@ class UnlimitedMode :  AppCompatActivity() {
             }
 
             if (currentWord.contains(' ')) {
-                // Show "Not in word list" message in unli_answer1
                 showTemporaryMessage("Please enter a complete word")
                 shakeCurrentRow()
                 return@setOnClickListener
             }
 
             if (!gameCore.searchWord(currentWord.toString())) {
-                // Show "Not in word list" message in unli_answer1
                 showTemporaryMessage("Not in word list")
                 shakeCurrentRow()
                 return@setOnClickListener
             }
 
             if (gameCore.enter()) {
-                isAnimating = true // Begin animation lock
+                isAnimating = true
 
                 for (col in 0 until colCount) {
                     val delay = col * 250L
@@ -167,11 +157,9 @@ class UnlimitedMode :  AppCompatActivity() {
                                 val letter = textView.text[0]
                                 tintKeyboardLetter(letter, result)
 
-                                // If this is the last column, end animation lock
                                 if (col == colCount - 1) {
                                     isAnimating = false
 
-                                    // Save game state after animation completes
                                     saveFullGameState()
                                 }
                             }
@@ -187,7 +175,6 @@ class UnlimitedMode :  AppCompatActivity() {
                     nextWord.visibility = View.VISIBLE
                     showTemporaryMessage("Correct! The word was: ${gameCore.getFinalWord()}", keepVisible = true)
 
-                    // Save state with answer showing
                     saveGameStateData(true, true)
                     return@setOnClickListener
                 }
@@ -200,9 +187,8 @@ class UnlimitedMode :  AppCompatActivity() {
                     answered.visibility = View.VISIBLE
                     val nextWord = findViewById<TextView>(R.id.nextword)
                     nextWord.visibility = View.VISIBLE
-                    showTemporaryMessage("Game over! The word was: ${gameCore.getFinalWord()}", keepVisible = true)
+                    showTemporaryMessage("The word was: ${gameCore.getFinalWord()}", keepVisible = true)
 
-                    // Save state with answer showing
                     saveGameStateData(true, true)
                 }
             }
@@ -216,12 +202,10 @@ class UnlimitedMode :  AppCompatActivity() {
             val col = gameCore.getCurCol()
             texts[row][col].text = " "
 
-            // Save game state after erasing
             saveFullGameState()
         }
     }
 
-    // Show message in unli_answer1 and hide after delay
     private fun showTemporaryMessage(message: String, keepVisible: Boolean = false) {
         val answered = findViewById<TextView>(R.id.unli_answer1)
         answered.text = message
@@ -230,7 +214,7 @@ class UnlimitedMode :  AppCompatActivity() {
         if (!keepVisible) {
             Handler(Looper.getMainLooper()).postDelayed({
                 answered.visibility = View.INVISIBLE
-            }, 2000) // Hide after 2 seconds
+            }, 2000)
         }
     }
 
@@ -239,7 +223,6 @@ class UnlimitedMode :  AppCompatActivity() {
         val row = gameCore.getCurRow()
         val shakeAnimation = AnimationUtils.loadAnimation(this, R.anim.shake_animation)
 
-        // Apply the shake animation to each TextView in the current row
         for (col in 0 until colCount) {
             texts[row][col].startAnimation(shakeAnimation)
         }
@@ -261,7 +244,6 @@ class UnlimitedMode :  AppCompatActivity() {
         resetKeyboardColors()
         Log.d("Word", "New word: ${gameCore.getFinalWord()}")
 
-        // Save the new state
         saveFullGameState()
     }
 
@@ -284,9 +266,8 @@ class UnlimitedMode :  AppCompatActivity() {
 
         gameCore.startOver()
         currentRow = 0
-        gameCore.clearGameState() // Clear saved game state when starting a new game
+        gameCore.clearGameState()
 
-        // Clear UI-specific state also
         val prefs = getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE)
         val editor = prefs.edit()
         editor.remove(KEY_SHOW_ANSWER)
@@ -326,7 +307,6 @@ class UnlimitedMode :  AppCompatActivity() {
 
         button.backgroundTintList = ContextCompat.getColorStateList(this, colorRes)
 
-        // Save keyboard state after changes
         saveKeyboardState()
     }
 
@@ -335,7 +315,6 @@ class UnlimitedMode :  AppCompatActivity() {
         gameCore.saveGameState()
         saveKeyboardState()
 
-        // Check if answer is showing
         val answered = findViewById<TextView>(R.id.unli_answer1)
         val nextWord = findViewById<TextView>(R.id.nextword)
         saveGameStateData(
@@ -361,10 +340,8 @@ class UnlimitedMode :  AppCompatActivity() {
         val gameCoreLoaded = gameCore.loadGameState()
 
         if (gameCoreLoaded) {
-            // Load additional game state data
             loadGameStateData()
 
-            // Update UI with loaded game state
             updateUIFromGameState()
             loadKeyboardState()
             return true
@@ -378,7 +355,6 @@ class UnlimitedMode :  AppCompatActivity() {
 
         currentRow = prefs.getInt(KEY_CURRENT_ROW, 0)
 
-        // Check if we need to show the answer and next word button
         val showAnswer = prefs.getBoolean(KEY_SHOW_ANSWER, false)
         val showNextWord = prefs.getBoolean(KEY_SHOW_NEXT_WORD, false)
 
@@ -411,7 +387,6 @@ class UnlimitedMode :  AppCompatActivity() {
                     val textView = texts[row][col]
                     textView.text = char.toString()
 
-                    // If this row is completed (not the current row), apply colors
                     if (row < gameCore.getCurRow()) {
                         val result = gameCore.validateChar(row, col)
                         val backgroundId = when (result) {

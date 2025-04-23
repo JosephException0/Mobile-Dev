@@ -17,4 +17,6 @@
         For more information, contact us at support@wordify.com.      "</string>
     <string name="dev_jz">I\'m a Computer Science student passionate about building meaningful and user-friendly mobile applications. I created this app as part of my journey to explore real-world development and improve my skills in Android and Kotlin. Thanks for using it!</string>
     <string name="dev_joseph">I\'m a Computer Science student who loves turning ideas into functional and clean mobile apps. This project is part of my learning adventure, and I\'m excited to keep growing and creating more useful tools. Thanks for checking it out!</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
 </resources>

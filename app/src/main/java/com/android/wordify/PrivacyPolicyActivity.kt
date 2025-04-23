@@ -17,7 +17,7 @@ class PrivacyPolicyActivity : AppCompatActivity() {
 
         val devBackArrow: ImageView = findViewById(R.id.backArrow)
         devBackArrow.setOnClickListener {
-            startActivity(Intent(this, SettingPage::class.java))// Simplifies the navigation flow back to the previous screen
+            startActivity(Intent(this, SettingPage::class.java))
         }
     }
 }
