@@ -1,6 +1,7 @@
 package com.android.wordify
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
@@ -9,7 +10,7 @@ class HelpPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.help_page)
 
-        val back = findViewById<ImageButton>(R.id.back_button_help)
+        val back = findViewById<Button>(R.id.back_button_help)
 
         back.setOnClickListener {
             finish()

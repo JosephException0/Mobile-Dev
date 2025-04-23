@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_hp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="?android:attr/colorBackground"
     android:padding="24dp"
-    android:backgroundTint="@color/help_background"
+    android:background="@color/help_background"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".HelpPage">
 
     <LinearLayout
@@ -14,91 +14,432 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageButton
+        <Button
             android:id="@+id/back_button_help"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/arrow_back"
-            android:contentDescription="Back" />
+            android:layout_marginTop="5dp"
+            android:background="@drawable/transparent"
+            android:drawableStart="@drawable/arrow_back" />
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🆘 Wordify Help"
-            android:textSize="28sp"
+            android:text="How To Play"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:fontFamily="@font/righteous_regular"
-            android:paddingTop="8dp"
-            android:textColor="@color/help_title" />
+            android:paddingTop="30dp"
+            android:textColor="@color/game_text" />
 
         <TextView
+            android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Introduction"
-            android:textStyle="bold"
+            android:text="Guess the Wordle in 6 tries."
+            android:fontFamily="@font/righteous_regular"
             android:textSize="20sp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/help_title" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/game_text" />
 
         <TextView
+            android:id="@+id/text_intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wordify helps you improve your vocabulary, track progress, and explore word games for fun and learning."
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/help_text" />
+            android:text="• Each guess must be a valid \n  5-letter word."
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/game_text" />
 
         <TextView
+            android:id="@+id/intro2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="📘 Dictionary / Word Explorer"
+            android:text="• The color of the tiles will change to \n  show how close your guess was to the \n  word."
+            android:textSize="20sp"
+            android:textColor="@color/game_text" />
+
+        <TextView
+            android:id="@+id/text_dictionary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Examples"
+            android:fontFamily="@font/righteous_regular"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/game_text" />
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/text1col1row"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_in_place"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:text="W"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text2col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.14" />
+
+            <TextView
+                android:id="@+id/text2col1row"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="O"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text3col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text3col1row"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="R"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text4col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text4col1row"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="D"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text5col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text5col1row"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textColor="@color/game_text"
+                android:text="Y"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.139" />
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/intro3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="W is in the word and in the correct spot."
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/help_title" />
+            android:layout_marginTop="11dp"
+            android:textColor="@color/game_text" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout21"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/text1col1row1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:text="P"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text2col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.14" />
+
+            <TextView
+                android:id="@+id/text2col1row1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_in_word"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="O"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text3col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text3col1row1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="W"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text4col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text4col1row1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="E"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text5col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text5col1row1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textColor="@color/game_text"
+                android:textAlignment="center"
+                android:text="R"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.139" />
+
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/text_games"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search for a word to see its meaning, pronunciation, synonyms, and usage."
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/help_text" />
+            android:text="O is in the word but in the wrong spot."
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginTop="11dp"
+            android:textColor="@color/game_text" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout211"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/text1col1row11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:text="P"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text2col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.14" />
+
+            <TextView
+                android:id="@+id/text2col1row11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="O"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text3col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text3col1row11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="W"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text4col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text4col1row11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/letter_border"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:text="E"
+                android:textStyle="bold"
+                android:textColor="@color/game_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/text5col1row"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.141" />
+
+            <TextView
+                android:id="@+id/text5col1row11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/letter_not_in"
+                android:fontFamily="@font/roboto_bold"
+                android:paddingTop="3dp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:text="R"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="33dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.139" />
+
+
+
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/intro4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="🧠 Word Games / Quizzes"
+            android:text="R is not in the word in any spot."
+            android:gravity="center"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/help_title" />
+            android:layout_marginTop="11dp"
+            android:textColor="@color/game_text" />
 
-        <TextView
+        <View
+            android:id="@+id/view1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose a game to test your vocabulary.\n\nEarn points or achievements as you progress.\n\nDifficulty adjusts automatically based on your score."
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/help_text" />
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/border_box"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="📊 Progress Tracking"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="16dp"
-            android:textColor="@color/help_title" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View your progress on the profile page.\n\nStats include most-learned words, quiz scores, etc."
-            android:textSize="16sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/help_text" />
 
     </LinearLayout>
 </ScrollView>

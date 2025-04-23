@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Navigation Drawer Button (Should Be Inside DrawerLayout but Accessible) -->
         <Button
             android:id="@+id/drawer_button"
             android:layout_width="33dp"

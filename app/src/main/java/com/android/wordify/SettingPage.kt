@@ -29,14 +29,11 @@ class SettingPage : AppCompatActivity() {
         val closeSettings: Button = findViewById(R.id.setting_close_button)
         val settingsList: ListView = findViewById(R.id.settings_list)
         val darkMode = findViewById<SwitchCompat>(R.id.switch_dark_mode)
-        val highContrastSwitch = findViewById<SwitchCompat>(R.id.switch_high_contrast)
 
         darkMode.isChecked = nightMode
-        highContrastSwitch.isChecked = highContrastMode
 
         darkMode.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                highContrastSwitch.isChecked = false
                 sharedPreferences.edit().putBoolean("night", true).putBoolean("highContrast", false).apply()
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
@@ -46,16 +43,7 @@ class SettingPage : AppCompatActivity() {
             restartActivityWithFade()
         }
 
-        highContrastSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                darkMode.isChecked = false
-                sharedPreferences.edit().putBoolean("highContrast", true).putBoolean("night", false).apply()
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            } else {
-                sharedPreferences.edit().putBoolean("highContrast", false).apply()
-            }
-            restartActivityWithFade()
-        }
+
 
         val settingsOptions = listOf(
             "Privacy Policy",

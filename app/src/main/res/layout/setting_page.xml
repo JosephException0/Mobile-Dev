@@ -47,32 +47,14 @@
         android:textColor="@color/text_settings"
         android:paddingStart="16dp"/>
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_high_contrast"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="High Contrast Mode"
-        android:fontFamily="@font/poppins_regular"
-        android:textSize="15sp"
-        android:textColor="@color/text_settings"
-        android:layout_marginTop="16dp"
-        android:paddingStart="16dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="For the color blind"
-        android:textSize="13sp"
-        android:textColor="@color/hintText_settings"
-        android:fontFamily="@font/poppins_regular"
-        android:layout_marginTop="4dp"
-        android:paddingStart="16dp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/black"
         android:layout_marginTop="16dp"
+        android:backgroundTint="@color/game_text"
         android:layout_marginBottom="16dp"/>
 
 

@@ -19,5 +19,6 @@
         android:id="@+id/list_item_icon"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/greater_than"/>
+        android:background="@drawable/greater_than"
+        android:backgroundTint="@color/game_text"/>
 </LinearLayout>

@@ -81,6 +81,7 @@ class LandingPage : AppCompatActivity() {
                     if (!app.isGuestUser()) {
                         showLogoutDialog()
                     } else {
+                        finish()
                         val intent = Intent(this, LoginPage::class.java)
                         startActivity(intent)
                     }
@@ -124,7 +125,7 @@ class LandingPage : AppCompatActivity() {
 
             app.logoutUser()
 
-            val intent = Intent(this, LandingPage::class.java)
+            val intent = Intent(this, LoginPage::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
             finish()

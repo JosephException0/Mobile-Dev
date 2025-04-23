@@ -5,14 +5,15 @@
     android:padding="20dp"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/rounded"
-    android:backgroundTint="@color/background_logOut"
+    android:background="@drawable/logout_bg"
+    android:backgroundTint="@color/background_profile"
     android:elevation="8dp">
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/logout_message">
+        android:backgroundTint="@color/text_logOut"
+        android:background="@drawable/logout_btn">
 
     </ImageView>
     <TextView
